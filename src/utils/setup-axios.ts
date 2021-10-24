@@ -11,6 +11,8 @@ export function setupAxios(token?: string) {
 
   interceptorId = axios.interceptors.request.use(
     config => {
+      console.log('ducnh request', config);
+
       if (!config.url?.startsWith('https://')) {
         config.url = `${SERVER_URL}${config.url}`;
         config.timeout = 20000;

@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { get } from 'lodash';
+import uuid from 'react-native-uuid';
 
 export const loginAction = createAsyncThunk(
   'login-request',
@@ -10,13 +11,10 @@ export const loginAction = createAsyncThunk(
       .post('/auth/sign-in', {
         username,
         password,
+        deviceId: uuid.v4(),
       })
       .then((res: AxiosResponse<any>) => {
-        console.log('ducnh2', res);
-
         const { data, success, error } = res.data;
-
-        console.log('ducnh5', data);
 
         if (!success || res.status > 400) {
           throw new Error(error.message ?? 'System error');
@@ -31,6 +29,8 @@ export const loginAction = createAsyncThunk(
         };
       })
       .catch(e => e.message);
+
+    console.log('ducnh7', response);
 
     return response;
   },

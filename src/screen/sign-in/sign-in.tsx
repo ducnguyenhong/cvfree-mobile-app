@@ -1,5 +1,5 @@
 import { Formik } from 'formik';
-import React from 'react';
+import React, { useState } from 'react';
 import { Image, Text, TextInput, TouchableOpacity, View } from 'react-native';
 import Logo from '../../assets/common/logo.png';
 import { styles } from './sign-in.styles';
@@ -7,8 +7,10 @@ import { initialValues, signInSchema } from './sign-in.types';
 import { useAppDispatch } from '../../redux/store';
 import { loginAction } from '../../redux/auth/auth-action';
 import md5 from 'md5';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 export const SignIn: React.FC = () => {
+  const [showPassword, setShowPassword] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   return (
     <View style={styles.container}>
@@ -32,9 +34,12 @@ export const SignIn: React.FC = () => {
               .unwrap()
               .then(response => {
                 console.log(response);
+                setSubmitting(false);
               })
-              .catch(error => console.log('ducnh3', error))
-              .finally(() => setSubmitting(false));
+              .catch(error => {
+                console.log('ducnh3', error);
+                setSubmitting(false);
+              });
           }}>
           {({
             values,
@@ -58,20 +63,32 @@ export const SignIn: React.FC = () => {
               <Text style={styles.tErrorUsername}>
                 {errors.username && touched.username && errors.username}
               </Text>
-              <TextInput
-                onChangeText={handleChange('password')}
-                onBlur={handleBlur('password')}
-                placeholder="Password"
-                secureTextEntry
-                value={values.password}
-                style={styles.ipPassword}
-                returnKeyType="done"
-              />
-              <Text style={styles.tErrorPassword}>
-                {errors.password && touched.password && errors.password}
-              </Text>
+              <View style={styles.vPassword}>
+                <TextInput
+                  onChangeText={handleChange('password')}
+                  onBlur={handleBlur('password')}
+                  placeholder="Password"
+                  secureTextEntry={!showPassword}
+                  value={values.password}
+                  style={styles.ipPassword}
+                  returnKeyType="done"
+                />
+                <Text style={styles.tErrorPassword}>
+                  {errors.password && touched.password && errors.password}
+                </Text>
+                <Icon
+                  name={showPassword ? 'eye' : 'eye-slash'}
+                  size={25}
+                  style={styles.icEye}
+                  onPress={() => setShowPassword(!showPassword)}
+                />
+              </View>
               <TouchableOpacity onPress={handleSubmit} disabled={isSubmitting}>
-                <Text style={styles.tSignIn}>Sign In</Text>
+                {isSubmitting ? (
+                  <Text style={styles.tSignInLoading}>Waiting...</Text>
+                ) : (
+                  <Text style={styles.tSignIn}>Sign In</Text>
+                )}
               </TouchableOpacity>
               <Text style={styles.tForgotPass}>Forgot password?</Text>
               <View style={styles.vRegister}>

@@ -24,6 +24,7 @@ export const authSlice = createSlice({
     builder
       .addCase(loginAction.fulfilled, (state, action) => {
         const loginResponse = action.payload.data;
+
         state.token = loginResponse.token;
         state.userInfo = loginResponse.userInfo;
         state.request = {
