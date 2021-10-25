@@ -11,6 +11,8 @@ import {
 import { CvInfo } from '../../../type/cv.type';
 import { styles } from './admin-cv.styles';
 import DefaultAvatar from '../../../assets/common/default-avatar.jpg';
+import Icon from 'react-native-vector-icons/FontAwesome5';
+import dayjs from 'dayjs';
 
 export const Cvs: React.FC = () => {
   const [cvs, setCvs] = useState<CvInfo[] | undefined | null>(undefined);
@@ -71,21 +73,43 @@ export const Cvs: React.FC = () => {
         keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => {
           const { detail, career } = item;
-          const { fullname, gender, birthday, address, phone } = detail;
+          const { fullname, gender, birthday, address } = detail;
           return (
             <View style={styles.vCvItem}>
               <View style={styles.vCvAvatar}>
                 <Image
-                  // style={styles.imgJobLogo}
+                  style={styles.imgCvAvatar}
                   source={DefaultAvatar}
                   resizeMode="contain"
                 />
               </View>
 
               <View style={styles.vCvContent}>
-                <Text style={styles.tFullName} numberOfLines={1}>
-                  {fullname}
-                </Text>
+                <View style={styles.vFullname}>
+                  <Text style={styles.tFullName} numberOfLines={1}>
+                    {fullname}
+                  </Text>
+                  <Icon
+                    style={styles.icGender}
+                    name={gender === 'MALE' ? 'mars' : 'venus'}
+                    color={gender === 'MALE' ? '#5858E5' : '#FF647E'}
+                    size={15}
+                  />
+                </View>
+                <View style={styles.vBirthday}>
+                  <Icon name="birthday-cake" style={styles.icBirthday} />
+                  <Text style={styles.tBirthday}>
+                    {dayjs(birthday).format('DD/MM/YYYY')}
+                  </Text>
+                </View>
+                <View style={styles.vAddress}>
+                  <Icon style={styles.icAddress} name="map-marker-alt" />
+                  <Text style={styles.tAddress}>{address?.label}</Text>
+                </View>
+                <View style={styles.vCareer}>
+                  <Icon name="briefcase" style={styles.icCareer} />
+                  <Text style={styles.tCareer}>{career?.label}</Text>
+                </View>
               </View>
             </View>
           );
