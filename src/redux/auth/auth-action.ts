@@ -21,12 +21,6 @@ export const loginAction = createAsyncThunk(
           throw new Error(error.message ?? 'System error');
         }
 
-        Toast.show({
-          type: 'success',
-          text1: 'Logged in successfully',
-          autoHide: false,
-        });
-
         return {
           success,
           data: {

@@ -27,8 +27,6 @@ export const Cvs: React.FC = () => {
       })
       .then(response => {
         const { data, error, success } = response.data;
-        console.log('ducnh4', response);
-
         if (!success || response.status > 400) {
           throw new Error(get(error, 'message') || 'Can not fetch cvs');
         }
