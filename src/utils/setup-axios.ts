@@ -1,8 +1,10 @@
 import axios from 'axios';
 import { get } from 'lodash';
 import { SERVER_URL } from '../constants/url';
+import Toast from 'react-native-toast-message';
 
 let interceptorId: number | null = null;
+let interceptorResId: number | null = null;
 
 export function setupAxios(token?: string) {
   if (interceptorId) {
@@ -38,6 +40,35 @@ export function setupAxios(token?: string) {
     error => {
       // Do something with request error
       return Promise.reject(error);
+    },
+  );
+}
+
+export function setupAxiosResponse() {
+  if (interceptorResId) {
+    axios.interceptors.request.eject(interceptorResId);
+  }
+
+  interceptorResId = axios.interceptors.response.use(
+    response => {
+      console.log('ducnh response', response.data);
+      return response;
+    },
+    err => {
+      console.log('ducnh error', err.response.data);
+
+      if (err.response && err.response.data) {
+        const { message } = err.response.data.error;
+        Toast.show({
+          type: 'error',
+          text1: `${err.response.status}`,
+          text2: `${message}`,
+          autoHide: false,
+        });
+
+        return Promise.reject(message ? new Error(message) : err);
+      }
+      return Promise.reject(err);
     },
   );
 }

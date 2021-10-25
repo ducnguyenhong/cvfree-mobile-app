@@ -1,6 +1,7 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { get } from 'lodash';
+import Toast from 'react-native-toast-message';
 import uuid from 'react-native-uuid';
 
 export const loginAction = createAsyncThunk(
@@ -20,6 +21,12 @@ export const loginAction = createAsyncThunk(
           throw new Error(error.message ?? 'System error');
         }
 
+        Toast.show({
+          type: 'success',
+          text1: 'Logged in successfully',
+          autoHide: false,
+        });
+
         return {
           success,
           data: {
@@ -28,9 +35,14 @@ export const loginAction = createAsyncThunk(
           },
         };
       })
-      .catch(e => e.message);
-
-    console.log('ducnh7', response);
+      .catch(e => {
+        Toast.show({
+          type: 'error',
+          text1: 'Login failed',
+          text2: e.message,
+          autoHide: false,
+        });
+      });
 
     return response;
   },

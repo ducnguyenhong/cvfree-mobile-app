@@ -1,6 +1,6 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { Home } from '../screen/home';
+import { TabsHome } from '../screen/tab-home';
 
 const Stack = createStackNavigator();
 
@@ -8,8 +8,8 @@ export const AppRoute = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="Home">
-      <Stack.Screen name="Home" component={Home} />
+      initialRouteName="TabsHome">
+      <Stack.Screen name="TabsHome" component={TabsHome} />
     </Stack.Navigator>
   );
 };
