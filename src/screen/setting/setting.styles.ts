@@ -85,7 +85,7 @@ export const styles = StyleSheet.create({
   },
 
   tOptionName: {
-    fontFamily: fonts.FontQsBold,
+    fontFamily: fonts.FontQsSemiBold,
     fontSize: 15,
     color: '#4D4D4D',
   },

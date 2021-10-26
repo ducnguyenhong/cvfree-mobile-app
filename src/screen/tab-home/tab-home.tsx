@@ -5,6 +5,7 @@ import { Cvs } from '../admin-area/cv';
 import { Jobs } from '../admin-area/job';
 import { HomeScreen } from '../home';
 import { SettingScreen } from '../setting/setting';
+import { HeaderCommon } from './tab-home.header';
 import { RootTabParamList } from './tab-home.type';
 // import { styles } from './home.styles';
 const Tab = createBottomTabNavigator<RootTabParamList>();
@@ -32,7 +33,7 @@ export const TabsHome: React.FC = () => {
   return (
     <Tab.Navigator
       screenOptions={({ route }) => ({
-        tabBarIcon: ({ color, size }) => {
+        tabBarIcon: ({ color }) => {
           // if (route.name === 'CreateTab') {
           //   return (
           //     <View style={styles.vButtonCreate}>
@@ -47,12 +48,11 @@ export const TabsHome: React.FC = () => {
           // }
           return <Icon name={getIconTab(route.name)} size={20} color={color} />;
         },
-        tabBarActiveTintColor: 'green',
-        tabBarInactiveTintColor: 'gray',
+        tabBarActiveTintColor: '#299D55',
+        tabBarInactiveTintColor: '#A7A7A7',
         tabBarStyle: { height: 60 },
-        tabBarShowLabel: false,
         headerStyle: {
-          backgroundColor: '#05A705',
+          backgroundColor: '#31BC31',
           height: 60,
         },
         headerTitleStyle: {
@@ -60,14 +60,37 @@ export const TabsHome: React.FC = () => {
         },
         tabBarLabelStyle: {
           textTransform: 'uppercase',
+          marginBottom: 5,
         },
-        headerShown: true,
+        headerShown: false,
+        tabBarShowLabel: true,
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
-      <Tab.Screen name="Job" component={Jobs} />
-      <Tab.Screen name="Cv" component={Cvs} />
+      <Tab.Screen
+        name="Job"
+        component={Jobs}
+        options={{
+          header: props => <HeaderCommon {...props} />,
+          headerShown: true,
+        }}
+      />
+      <Tab.Screen
+        name="Cv"
+        component={Cvs}
+        options={{
+          header: props => <HeaderCommon {...props} />,
+          headerShown: true,
+        }}
+      />
       {/* <Tab.Screen name="CreateTab" component={CreateScreen} /> */}
-      <Tab.Screen name="Setting" component={SettingScreen} />
+      <Tab.Screen
+        name="Setting"
+        component={SettingScreen}
+        options={{
+          header: props => <HeaderCommon {...props} backButton />,
+          headerShown: true,
+        }}
+      />
     </Tab.Navigator>
   );
 };
