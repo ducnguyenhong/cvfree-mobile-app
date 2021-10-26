@@ -17,7 +17,7 @@ const getIconTab = (route: string) => {
       return 'home';
 
     case 'Setting':
-      return 'user-circle';
+      return 'cog';
 
     case 'Job':
       return 'briefcase';
@@ -66,9 +66,6 @@ export const TabsHome: React.FC = () => {
         },
         headerShown: false,
         tabBarShowLabel: true,
-        tabBarItemStyle: {
-          // backgroundColor: '#F0FFEA',
-        },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen
