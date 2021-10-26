@@ -7,6 +7,7 @@ import { HomeScreen } from '../home';
 import { SettingScreen } from '../setting/setting';
 import { HeaderCommon } from './tab-home.header';
 import { RootTabParamList } from './tab-home.type';
+import * as fonts from '../../constants/fonts';
 // import { styles } from './home.styles';
 const Tab = createBottomTabNavigator<RootTabParamList>();
 
@@ -60,10 +61,14 @@ export const TabsHome: React.FC = () => {
         },
         tabBarLabelStyle: {
           textTransform: 'uppercase',
-          marginBottom: 5,
+          marginBottom: 6,
+          fontFamily: fonts.FontQsSemiBold,
         },
         headerShown: false,
         tabBarShowLabel: true,
+        tabBarItemStyle: {
+          // backgroundColor: '#F0FFEA',
+        },
       })}>
       <Tab.Screen name="Home" component={HomeScreen} />
       <Tab.Screen

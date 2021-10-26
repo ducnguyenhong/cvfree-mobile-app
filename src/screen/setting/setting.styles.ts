@@ -12,10 +12,8 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
-    margin: 10,
     marginBottom: 0,
     backgroundColor: '#fff',
-    borderRadius: 5,
     padding: 10,
 
     shadowColor: '#000',

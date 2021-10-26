@@ -6,8 +6,9 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
     width: '100%',
     height: '100%',
-    paddingVertical: 10,
+    paddingBottom: 10,
     paddingHorizontal: 15,
+    paddingTop: 100,
   },
 
   vLoading: {
@@ -17,6 +18,76 @@ export const styles = StyleSheet.create({
   vNoData: {
     padding: 10,
   },
+
+  // toolbar
+
+  imgHeaderBackground: {
+    width: '100%',
+    zIndex: 10,
+    position: 'absolute',
+    top: 0,
+    left: 0,
+    paddingTop: 40,
+  },
+
+  vToolbar: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    borderBottomWidth: 1,
+    borderBottomColor: '#C9C9C9',
+    paddingBottom: 15,
+    paddingHorizontal: 15,
+  },
+
+  vToolbarLeft: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+  },
+
+  imgToolbarAvatar: {
+    width: 45,
+    height: 45,
+    borderRadius: 100,
+  },
+
+  vToolbarInfo: {
+    marginLeft: 10,
+  },
+
+  tToolbarHello: {
+    color: '#F2F2F2',
+  },
+
+  tToolbarFullname: {
+    textTransform: 'uppercase',
+    fontFamily: fonts.FontQsBold,
+    color: '#fff',
+  },
+
+  vToolbarRight: {
+    flexDirection: 'row',
+    justifyContent: 'center',
+    alignItems: 'center',
+    paddingRight: 10,
+  },
+
+  vToolbarIcon: {
+    width: 35,
+    height: 35,
+    justifyContent: 'center',
+    alignItems: 'center',
+    backgroundColor: '#F0F0F0',
+    marginLeft: 15,
+    borderRadius: 50,
+  },
+
+  icToolbarIcon: {
+    color: 'green',
+  },
+
+  // common
 
   vLabel: {
     marginTop: 10,
