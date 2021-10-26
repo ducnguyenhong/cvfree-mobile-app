@@ -8,10 +8,13 @@ import { useAppDispatch } from '../../redux/store';
 import { loginAction } from '../../redux/auth/auth-action';
 import md5 from 'md5';
 import Icon from 'react-native-vector-icons/FontAwesome';
+import { useNavigation } from '@react-navigation/native';
 
 export const SignIn: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const dispatch = useAppDispatch();
+  const navigation = useNavigation<any>();
+
   return (
     <View style={styles.container}>
       <View style={styles.vLogo}>
@@ -93,7 +96,11 @@ export const SignIn: React.FC = () => {
               <Text style={styles.tForgotPass}>Forgot password?</Text>
               <View style={styles.vRegister}>
                 <Text style={styles.tDontAcc}>Don't have an account!</Text>
-                <Text style={styles.tRegister}>Register</Text>
+                <Text
+                  style={styles.tRegister}
+                  onPress={() => navigation.navigate('SignUp')}>
+                  Register
+                </Text>
               </View>
             </View>
           )}
