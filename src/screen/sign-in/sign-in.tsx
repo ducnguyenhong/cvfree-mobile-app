@@ -9,11 +9,15 @@ import { loginAction } from '../../redux/auth/auth-action';
 import md5 from 'md5';
 import Icon from 'react-native-vector-icons/FontAwesome';
 import { useNavigation } from '@react-navigation/native';
+import { useSelector } from 'react-redux';
+import { getDeviceId } from '../../redux/selector/auth-selector';
+import uuid from 'react-native-uuid';
 
 export const SignIn: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
+  const deviceId = useSelector(getDeviceId);
 
   return (
     <View style={styles.container}>
@@ -32,6 +36,7 @@ export const SignIn: React.FC = () => {
               loginAction({
                 username: values.username,
                 password: md5(values.password),
+                deviceId: deviceId || `${uuid.v4()}`,
               }),
             )
               .unwrap()

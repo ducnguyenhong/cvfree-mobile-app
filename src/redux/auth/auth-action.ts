@@ -2,17 +2,16 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { get } from 'lodash';
 import Toast from 'react-native-toast-message';
-import uuid from 'react-native-uuid';
 
 export const loginAction = createAsyncThunk(
   'login-request',
-  async (input: { username: string; password: string }) => {
-    const { username, password } = input;
+  async (input: { username: string; password: string; deviceId: string }) => {
+    const { username, password, deviceId } = input;
     const response = await axios
       .post('/auth/sign-in', {
         username,
         password,
-        deviceId: uuid.v4(),
+        deviceId,
       })
       .then((res: AxiosResponse<any>) => {
         const { data, success, error } = res.data;

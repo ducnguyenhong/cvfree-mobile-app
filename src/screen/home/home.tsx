@@ -86,11 +86,7 @@ export const HomeScreen: React.FC = () => {
 
   return (
     <SafeAreaView>
-      <StatusBar
-        backgroundColor="#fff"
-        barStyle="dark-content"
-        translucent={false}
-      />
+      <StatusBar backgroundColor="transparent" translucent />
       {/* Header toolbar */}
       <ImageBackground
         source={ImgHeaderBackground}

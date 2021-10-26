@@ -9,11 +9,13 @@ export interface AuthState {
     loading?: boolean;
     error?: string;
   };
+  deviceId: string;
 }
 
 const initialState: AuthState = {
   token: null,
   userInfo: null,
+  deviceId: '',
 };
 
 export const authSlice = createSlice({
