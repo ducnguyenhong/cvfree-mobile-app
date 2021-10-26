@@ -1,12 +1,18 @@
+import { UserInfo } from '../../type/user.type';
 import { selector } from '.';
 import { RootState } from '../store';
 
 export const getUserInfo = selector(
   (state: RootState) => state.auth,
-  auth => auth.userInfo,
+  auth => auth.userInfo as UserInfo,
 );
 
 export const getUserToken = selector(
   (state: RootState) => state.auth,
-  auth => auth.token,
+  auth => auth.token as string,
+);
+
+export const getDeviceId = selector(
+  (state: RootState) => state.auth,
+  auth => auth.deviceId as string,
 );

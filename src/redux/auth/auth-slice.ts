@@ -9,11 +9,13 @@ export interface AuthState {
     loading?: boolean;
     error?: string;
   };
+  deviceId: string;
 }
 
 const initialState: AuthState = {
   token: null,
   userInfo: null,
+  deviceId: '',
 };
 
 export const authSlice = createSlice({
@@ -24,6 +26,7 @@ export const authSlice = createSlice({
     builder
       .addCase(loginAction.fulfilled, (state, action) => {
         const loginResponse = action.payload.data;
+
         state.token = loginResponse.token;
         state.userInfo = loginResponse.userInfo;
         state.request = {

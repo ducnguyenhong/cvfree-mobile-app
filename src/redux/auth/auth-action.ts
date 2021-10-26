@@ -1,22 +1,20 @@
 import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { get } from 'lodash';
+import Toast from 'react-native-toast-message';
 
 export const loginAction = createAsyncThunk(
   'login-request',
-  async (input: { username: string; password: string }) => {
-    const { username, password } = input;
+  async (input: { username: string; password: string; deviceId: string }) => {
+    const { username, password, deviceId } = input;
     const response = await axios
       .post('/auth/sign-in', {
         username,
         password,
+        deviceId,
       })
       .then((res: AxiosResponse<any>) => {
-        console.log('ducnh2', res);
-
         const { data, success, error } = res.data;
-
-        console.log('ducnh5', data);
 
         if (!success || res.status > 400) {
           throw new Error(error.message ?? 'System error');
@@ -30,7 +28,14 @@ export const loginAction = createAsyncThunk(
           },
         };
       })
-      .catch(e => e.message);
+      .catch(e => {
+        Toast.show({
+          type: 'error',
+          text1: 'Login failed',
+          text2: e.message,
+          autoHide: false,
+        });
+      });
 
     return response;
   },

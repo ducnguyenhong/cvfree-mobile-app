@@ -1,6 +1,6 @@
 {
   "name": "reactnativecvfree",
-  "version": "0.0.1",
+  "version": "20211026.10.35",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -29,8 +29,12 @@
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
+    "react-native-toast-message": "^1.6.0",
+    "react-native-uuid": "^2.0.1",
+    "react-native-vector-icons": "^8.1.0",
     "react-redux": "^7.2.5",
     "redux-persist": "^6.0.0",
+    "rn-placeholder": "^3.0.3",
     "yup": "^0.32.11"
   },
   "devDependencies": {
@@ -40,6 +44,7 @@
     "@types/jest": "^26.0.23",
     "@types/md5": "^2.3.1",
     "@types/react-native": "^0.65.0",
+    "@types/react-native-vector-icons": "^6.4.9",
     "@types/react-redux": "^7.1.18",
     "@types/react-test-renderer": "^17.0.1",
     "babel-jest": "^26.6.3",

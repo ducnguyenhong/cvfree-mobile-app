@@ -1,15 +1,18 @@
 import { createStackNavigator } from '@react-navigation/stack';
 import React from 'react';
-import { Home } from '../screen/home';
+import { ChangePassword } from '../screen/change-password';
+import { TabsHome } from '../screen/tab-home';
+import { RootStackParamList } from './router.type';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppRoute = () => {
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      initialRouteName="Home">
-      <Stack.Screen name="Home" component={Home} />
+      initialRouteName="TabsHome">
+      <Stack.Screen name="TabsHome" component={TabsHome} />
+      <Stack.Screen name="ChangePassword" component={ChangePassword} />
     </Stack.Navigator>
   );
 };

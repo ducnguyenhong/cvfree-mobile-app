@@ -1,4 +1,3 @@
-import { getFocusedRouteNameFromRoute } from '@react-navigation/core';
 import { StyleSheet } from 'react-native';
 import * as fonts from '../../constants/fonts';
 
@@ -38,8 +37,19 @@ export const styles = StyleSheet.create({
     fontSize: 15,
   },
 
-  ipPassword: {
+  vPassword: {
     marginTop: 30,
+    position: 'relative',
+  },
+
+  icEye: {
+    position: 'absolute',
+    right: 10,
+    top: 10,
+    color: '#797C7C',
+  },
+
+  ipPassword: {
     backgroundColor: '#F4F6F8',
     borderRadius: 8,
     paddingHorizontal: 20,
@@ -49,6 +59,17 @@ export const styles = StyleSheet.create({
   tSignIn: {
     marginTop: 40,
     backgroundColor: '#15A262',
+    textAlign: 'center',
+    paddingVertical: 15,
+    borderRadius: 10,
+    color: '#fff',
+    fontSize: 17,
+    fontFamily: fonts.FontQsSemiBold,
+  },
+
+  tSignInLoading: {
+    marginTop: 40,
+    backgroundColor: '#71716C',
     textAlign: 'center',
     paddingVertical: 15,
     borderRadius: 10,
