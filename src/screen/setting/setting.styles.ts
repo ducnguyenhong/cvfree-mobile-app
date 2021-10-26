@@ -11,6 +11,7 @@ export const styles = StyleSheet.create({
   vUserInfo: {
     flexDirection: 'row',
     alignItems: 'center',
+    justifyContent: 'space-between',
     margin: 10,
     marginBottom: 0,
     backgroundColor: '#fff',
@@ -26,6 +27,11 @@ export const styles = StyleSheet.create({
     shadowRadius: 1.41,
 
     elevation: 2,
+  },
+
+  vUserContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
   },
 
   vName: {
@@ -55,14 +61,18 @@ export const styles = StyleSheet.create({
     backgroundColor: '#fff',
   },
 
-  vRowOption: {
-    flexDirection: 'row',
-    paddingHorizontal: 20,
+  toRowOption: {
     height: 60,
     borderBottomWidth: 1,
+    borderBottomColor: '#DBDBDB',
+    justifyContent: 'center',
+    paddingHorizontal: 20,
+  },
+
+  vRowOption: {
+    flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    borderBottomColor: '#DBDBDB',
   },
 
   vRowOptionLeft: {

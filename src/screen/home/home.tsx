@@ -24,9 +24,11 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
 import { getSalary } from '../../utils/helper';
 import DefaultCompanyLogo from '../../assets/common/default-company-logo.png';
+import { useNavigation } from '@react-navigation/native';
 
 export const HomeScreen: React.FC = () => {
   const [data, setData] = useState<DashboardInfo | undefined | null>(undefined);
+  const navigation = useNavigation<any>();
 
   const callApiDashboard = useCallback(() => {
     axios
@@ -107,7 +109,11 @@ export const HomeScreen: React.FC = () => {
             <View style={styles.vJobs}>
               <View style={styles.vLabel}>
                 <Text style={styles.tLabel}>Jobs</Text>
-                <Text style={styles.tSeeAll}>See all</Text>
+                <Text
+                  style={styles.tSeeAll}
+                  onPress={() => navigation.navigate('Job')}>
+                  See all
+                </Text>
               </View>
               <View>
                 <FlatList
@@ -250,7 +256,11 @@ export const HomeScreen: React.FC = () => {
             <View style={styles.vCompanies}>
               <View style={styles.vLabel}>
                 <Text style={styles.tLabel}>Companies</Text>
-                <Text style={styles.tSeeAll}>See all</Text>
+                <Text
+                  style={styles.tSeeAll}
+                  onPress={() => navigation.navigate('Cv')}>
+                  See all
+                </Text>
               </View>
               <View>
                 <FlatList

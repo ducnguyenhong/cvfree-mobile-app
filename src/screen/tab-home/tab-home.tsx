@@ -5,8 +5,9 @@ import { Cvs } from '../admin-area/cv';
 import { Jobs } from '../admin-area/job';
 import { HomeScreen } from '../home';
 import { SettingScreen } from '../setting/setting';
+import { RootTabParamList } from './tab-home.type';
 // import { styles } from './home.styles';
-const Tab = createBottomTabNavigator();
+const Tab = createBottomTabNavigator<RootTabParamList>();
 
 const getIconTab = (route: string) => {
   switch (route) {
