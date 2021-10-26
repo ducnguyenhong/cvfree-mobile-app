@@ -80,6 +80,10 @@ export const styles = StyleSheet.create({
     marginBottom: 20,
   },
 
+  flContentJob: {
+    padding: 10,
+  },
+
   jobItem: {
     marginRight: 20,
     // borderWidth: 1,
@@ -87,8 +91,6 @@ export const styles = StyleSheet.create({
     borderRadius: 5,
     borderColor: '#F0F0F0',
     backgroundColor: '#fff',
-
-    //
     shadowColor: '#000',
     shadowOffset: {
       width: 0,
@@ -151,10 +153,23 @@ export const styles = StyleSheet.create({
   vCvItem: {
     flexDirection: 'row',
     marginRight: 20,
-    borderWidth: 1,
     padding: 10,
     borderRadius: 5,
-    borderColor: '#afafaf',
+
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+
+  flContentCv: {
+    padding: 10,
   },
 
   vCvAvatar: {
@@ -232,4 +247,68 @@ export const styles = StyleSheet.create({
   },
 
   // company
+
+  vCompanies: {
+    marginTop: 20,
+  },
+
+  flContentCompany: {
+    padding: 10,
+  },
+
+  vCompanyItem: {
+    flexDirection: 'row',
+    padding: 10,
+    borderRadius: 5,
+    marginRight: 20,
+
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
+  },
+
+  vCompanyLogo: {
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  imgCompanyLogo: {
+    width: 70,
+    height: 70,
+    borderRadius: 100,
+  },
+
+  vCompanyContent: {
+    marginLeft: 20,
+  },
+
+  tCompanyName: {
+    textTransform: 'uppercase',
+    color: '#000',
+    fontSize: 16,
+    fontFamily: fonts.FontQsSemiBold,
+  },
+
+  vCompanyInfo: {
+    marginTop: 5,
+  },
+
+  vCompanyRow: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 3,
+  },
+
+  icCompanyRow: {
+    marginRight: 5,
+  },
+
+  tCompanyRowValue: {},
 });
