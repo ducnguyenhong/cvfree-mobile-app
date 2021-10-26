@@ -114,7 +114,7 @@ export const styles = StyleSheet.create({
 
   vStatisData: {
     flexDirection: 'row',
-    marginBottom: 20,
+    marginBottom: 10,
   },
 
   vStatisCvItem: {
@@ -122,7 +122,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#EDE9FE',
+    flexDirection: 'row',
   },
 
   vStatisCompanyItem: {
@@ -130,7 +130,7 @@ export const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#D1FAE5',
+    flexDirection: 'row',
   },
 
   vStatisJobItem: {
@@ -138,12 +138,38 @@ export const styles = StyleSheet.create({
     padding: 10,
     alignItems: 'center',
     justifyContent: 'center',
-    backgroundColor: '#FEE2E2',
+    flexDirection: 'row',
   },
 
-  tStatisLabel: {},
+  icStatisItemCv: {
+    fontSize: 25,
+    color: '#6AAD31',
+  },
 
-  tStatisValue: {},
+  icStatisItemCompany: {
+    fontSize: 25,
+    color: '#A039A0',
+  },
+
+  icStatisItemJob: {
+    fontSize: 25,
+    color: '#3986C1',
+  },
+
+  vStatisItemContent: {
+    marginLeft: 10,
+  },
+
+  tStatisLabel: {
+    textTransform: 'uppercase',
+    fontSize: 11,
+  },
+
+  tStatisValue: {
+    fontSize: 17,
+    color: 'red',
+    fontFamily: fonts.FontQsSemiBold,
+  },
 
   // jobs
 

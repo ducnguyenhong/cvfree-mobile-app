@@ -112,7 +112,7 @@ export const HomeScreen: React.FC = () => {
         </View>
       </ImageBackground>
 
-      <ScrollView>
+      <ScrollView showsVerticalScrollIndicator={false}>
         <View>
           <View style={styles.container}>
             <View>
@@ -123,16 +123,25 @@ export const HomeScreen: React.FC = () => {
                 </View>
                 <View style={styles.vStatisData}>
                   <View style={styles.vStatisCvItem}>
-                    <Text style={styles.tStatisLabel}>CV</Text>
-                    <Text style={styles.tStatisValue}>{statis.cv}</Text>
-                  </View>
-                  <View style={styles.vStatisCompanyItem}>
-                    <Text style={styles.tStatisLabel}>Company</Text>
-                    <Text style={styles.tStatisValue}>{statis.company}</Text>
+                    <Icon name="paste" style={styles.icStatisItemCv} />
+                    <View style={styles.vStatisItemContent}>
+                      <Text style={styles.tStatisValue}>{statis.cv}</Text>
+                      <Text style={styles.tStatisLabel}>Cvs</Text>
+                    </View>
                   </View>
                   <View style={styles.vStatisJobItem}>
-                    <Text style={styles.tStatisLabel}>Job</Text>
-                    <Text style={styles.tStatisValue}>{statis.job}</Text>
+                    <Icon name="briefcase" style={styles.icStatisItemJob} />
+                    <View style={styles.vStatisItemContent}>
+                      <Text style={styles.tStatisValue}>{statis.job}</Text>
+                      <Text style={styles.tStatisLabel}>Jobs</Text>
+                    </View>
+                  </View>
+                  <View style={styles.vStatisCompanyItem}>
+                    <Icon name="building" style={styles.icStatisItemCompany} />
+                    <View style={styles.vStatisItemContent}>
+                      <Text style={styles.tStatisValue}>{statis.company}</Text>
+                      <Text style={styles.tStatisLabel}>Companies</Text>
+                    </View>
                   </View>
                 </View>
               </View>
