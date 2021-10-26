@@ -6,6 +6,7 @@ import { styles } from './setting.styles';
 import DefaultAvatar from '../../assets/common/default-avatar.jpg';
 import { getUserInfo } from '../../redux/selector/auth-selector';
 import Icon from 'react-native-vector-icons/FontAwesome5';
+import packageJson from '../../../package.json';
 
 export const SettingScreen: React.FC = () => {
   const dispatch = useDispatch();
@@ -41,7 +42,29 @@ export const SettingScreen: React.FC = () => {
       <View style={styles.vListOption}>
         <View style={styles.vRowOption}>
           <View style={styles.vRowOptionLeft}>
-            <Icon name="globe-americas" size={20} />
+            <Icon name="paste" size={18} color="#F2C13E" />
+            <View style={styles.vTextOption}>
+              <Text style={styles.tOptionName}>CV list</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
+        </View>
+
+        <View style={styles.vRowOption}>
+          <View style={styles.vRowOptionLeft}>
+            <Icon name="briefcase" size={18} color="#C917CE" />
+            <View style={styles.vTextOption}>
+              <Text style={styles.tOptionName}>List of jobs applied for</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
+        </View>
+      </View>
+
+      <View style={styles.vListOption}>
+        <View style={styles.vRowOption}>
+          <View style={styles.vRowOptionLeft}>
+            <Icon name="globe-americas" size={18} color="#4389ED" />
             <View style={styles.vTextOption}>
               <Text style={styles.tOptionName}>Language</Text>
               <Text style={styles.tOptionSubName}>English</Text>
@@ -50,15 +73,61 @@ export const SettingScreen: React.FC = () => {
           <Icon name="chevron-right" size={15} color="#DBDBDB" />
         </View>
 
+        <View style={styles.vRowOption}>
+          <View style={styles.vRowOptionLeft}>
+            <Icon name="lock" size={18} color="#4DAD6C" />
+            <View style={styles.vTextOption}>
+              <Text style={styles.tOptionName}>Change password</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
+        </View>
+
         <View style={styles.vRowOption} onTouchStart={onSignOut}>
           <View style={styles.vRowOptionLeft}>
-            <Icon name="sign-out-alt" size={20} />
+            <Icon name="power-off" size={18} color="#FF4B4B" />
             <View style={styles.vTextOption}>
               <Text style={styles.tOptionName}>Sign out</Text>
             </View>
           </View>
           <Icon name="chevron-right" size={15} color="#DBDBDB" />
         </View>
+      </View>
+
+      <View style={styles.vListOption}>
+        <View style={styles.vRowOption}>
+          <View style={styles.vRowOptionLeft}>
+            <Icon name="atlas" size={18} color="#4DD6B7" />
+            <View style={styles.vTextOption}>
+              <Text style={styles.tOptionName}>Term of use</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
+        </View>
+
+        <View style={styles.vRowOption}>
+          <View style={styles.vRowOptionLeft}>
+            <Icon name="shield-alt" size={18} color="#81E30F" />
+            <View style={styles.vTextOption}>
+              <Text style={styles.tOptionName}>Privacy policy</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
+        </View>
+
+        <View style={styles.vRowOption}>
+          <View style={styles.vRowOptionLeft}>
+            <Icon name="info-circle" size={18} color="#6493D8" />
+            <View style={styles.vTextOption}>
+              <Text style={styles.tOptionName}>About us</Text>
+            </View>
+          </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
+        </View>
+      </View>
+
+      <View style={styles.vVersion}>
+        <Text style={styles.tVersion}>Version: {packageJson.version}</Text>
       </View>
     </View>
   );

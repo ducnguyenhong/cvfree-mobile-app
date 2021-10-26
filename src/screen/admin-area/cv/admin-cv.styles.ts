@@ -17,10 +17,20 @@ export const styles = StyleSheet.create({
 
   vCvItem: {
     flexDirection: 'row',
-    backgroundColor: '#fff',
     borderRadius: 8,
     padding: 10,
     marginBottom: 10,
+
+    backgroundColor: '#fff',
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
 
   vCvAvatar: {

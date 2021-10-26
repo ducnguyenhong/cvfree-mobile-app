@@ -12,9 +12,20 @@ export const styles = StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     margin: 10,
+    marginBottom: 0,
     backgroundColor: '#fff',
     borderRadius: 5,
     padding: 10,
+
+    shadowColor: '#000',
+    shadowOffset: {
+      width: 0,
+      height: 1,
+    },
+    shadowOpacity: 0.2,
+    shadowRadius: 1.41,
+
+    elevation: 2,
   },
 
   vName: {
@@ -40,7 +51,7 @@ export const styles = StyleSheet.create({
   },
 
   vListOption: {
-    marginTop: 20,
+    marginTop: 15,
     backgroundColor: '#fff',
   },
 
@@ -73,4 +84,11 @@ export const styles = StyleSheet.create({
     color: '#AFAFAF',
     marginTop: 3,
   },
+
+  vVersion: {
+    alignItems: 'flex-end',
+    padding: 10,
+  },
+
+  tVersion: {},
 });

@@ -14,13 +14,13 @@ const getIconTab = (route: string) => {
       return 'home';
 
     case 'Setting':
-      return 'cog';
+      return 'user-circle';
 
     case 'Job':
       return 'briefcase';
 
     case 'Cv':
-      return 'copy';
+      return 'paste';
 
     default:
       return '';

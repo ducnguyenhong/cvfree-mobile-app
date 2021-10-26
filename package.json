@@ -1,6 +1,6 @@
 {
   "name": "reactnativecvfree",
-  "version": "0.0.1",
+  "version": "20211026.10.35",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
