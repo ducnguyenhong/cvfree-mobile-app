@@ -5,7 +5,7 @@ import { Cvs } from '../admin-area/cv';
 import { Jobs } from '../admin-area/job';
 import { HomeScreen } from '../home';
 import { SettingScreen } from '../setting/setting';
-import { HeaderCommon } from './tab-home.header';
+import { HeaderTab } from './tab-home.header';
 import { RootTabParamList } from './tab-home.type';
 import * as fonts from '../../constants/fonts';
 // import { styles } from './home.styles';
@@ -72,7 +72,7 @@ export const TabsHome: React.FC = () => {
         name="Job"
         component={Jobs}
         options={{
-          header: props => <HeaderCommon {...props} />,
+          header: props => <HeaderTab {...props} />,
           headerShown: true,
         }}
       />
@@ -80,7 +80,7 @@ export const TabsHome: React.FC = () => {
         name="Cv"
         component={Cvs}
         options={{
-          header: props => <HeaderCommon {...props} />,
+          header: props => <HeaderTab {...props} />,
           headerShown: true,
         }}
       />
@@ -89,7 +89,7 @@ export const TabsHome: React.FC = () => {
         name="Setting"
         component={SettingScreen}
         options={{
-          header: props => <HeaderCommon {...props} backButton />,
+          header: props => <HeaderTab {...props} />,
           headerShown: true,
         }}
       />

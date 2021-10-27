@@ -94,7 +94,9 @@ export const HomeScreen: React.FC = () => {
         style={styles.imgHeaderBackground}
         resizeMode="cover">
         <View style={styles.vToolbar}>
-          <View style={styles.vToolbarLeft}>
+          <View
+            style={styles.vToolbarLeft}
+            onTouchStart={() => navigation.navigate('ProfileScreen')}>
             <Image source={DefaultAvatar} style={styles.imgToolbarAvatar} />
             <View style={styles.vToolbarInfo}>
               <Text style={styles.tToolbarHello}>Hello</Text>

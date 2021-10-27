@@ -34,16 +34,20 @@ export const SettingScreen: React.FC = () => {
 
   return (
     <View style={styles.container}>
-      <View style={styles.vUserInfo}>
-        <View style={styles.vUserContent}>
-          <Image source={avatar || DefaultAvatar} style={styles.imgAvatar} />
-          <View style={styles.vName}>
-            <Text style={styles.tFullname}>{fullname}</Text>
-            <Text style={styles.tUsername}>@{username}</Text>
+      <TouchableOpacity
+        activeOpacity={0.7}
+        onPress={() => navigation.navigate('ProfileScreen')}>
+        <View style={styles.vUserInfo}>
+          <View style={styles.vUserContent}>
+            <Image source={avatar || DefaultAvatar} style={styles.imgAvatar} />
+            <View style={styles.vName}>
+              <Text style={styles.tFullname}>{fullname}</Text>
+              <Text style={styles.tUsername}>@{username}</Text>
+            </View>
           </View>
+          <Icon name="chevron-right" size={15} color="#DBDBDB" />
         </View>
-        <Icon name="chevron-right" size={15} color="#DBDBDB" />
-      </View>
+      </TouchableOpacity>
 
       <View style={styles.vListOption}>
         <TouchableOpacity activeOpacity={0.7} style={styles.toRowOption}>

@@ -1,17 +1,61 @@
 import React from 'react';
 import { ImageBackground, StatusBar, Text, View } from 'react-native';
-import { headerStyles } from './tab-home.styles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
-import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
-import ImgHeaderBackground from '../../assets/common/img_header_background.png';
+import ImgHeaderBackground from '../assets/common/img_header_background.png';
 import { useNavigation } from '@react-navigation/native';
+import { StyleSheet } from 'react-native';
+import * as fonts from '../constants/fonts';
+import { StackHeaderProps } from '@react-navigation/stack';
 
-interface HeaderTabProps extends BottomTabHeaderProps {
+interface HeaderStackProps extends StackHeaderProps {
   backButton?: boolean;
   title?: string;
 }
 
-export const HeaderTab: React.FC<HeaderTabProps> = props => {
+export const headerStyles = StyleSheet.create({
+  vHeader: {},
+
+  imgHeader: {
+    height: 80,
+    width: '100%',
+    position: 'relative',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+
+  vHeaderContent: {
+    justifyContent: 'flex-start',
+    alignItems: 'center',
+    flexDirection: 'row',
+    marginTop: 10,
+  },
+
+  vHeaderLeft: {
+    flex: 1 / 3,
+  },
+
+  icBack: {
+    paddingLeft: 20,
+  },
+
+  vHeaderCenter: {
+    flex: 1 / 3,
+    alignItems: 'center',
+  },
+
+  tTitle: {
+    color: '#fff',
+    fontFamily: fonts.FontQsBold,
+    fontSize: 17,
+    padding: 15,
+  },
+
+  vHeaderRight: {
+    flex: 1 / 3,
+  },
+});
+
+export const HeaderStack: React.FC<HeaderStackProps> = props => {
   const { route, backButton, title } = props;
   const navigation = useNavigation<any>();
 
