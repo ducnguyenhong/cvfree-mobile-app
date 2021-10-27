@@ -24,14 +24,17 @@ export const headerStyles = StyleSheet.create({
   },
 
   vHeaderContent: {
-    justifyContent: 'flex-start',
+    justifyContent: 'center',
     alignItems: 'center',
     flexDirection: 'row',
     marginTop: 10,
+    width: '100%',
   },
 
   vHeaderLeft: {
-    flex: 1 / 3,
+    position: 'absolute',
+    top: 20,
+    left: 10,
   },
 
   icBack: {
@@ -39,7 +42,6 @@ export const headerStyles = StyleSheet.create({
   },
 
   vHeaderCenter: {
-    flex: 1 / 3,
     alignItems: 'center',
   },
 
@@ -50,9 +52,7 @@ export const headerStyles = StyleSheet.create({
     padding: 15,
   },
 
-  vHeaderRight: {
-    flex: 1 / 3,
-  },
+  vHeaderRight: {},
 });
 
 export const HeaderStack: React.FC<HeaderStackProps> = props => {
@@ -79,7 +79,9 @@ export const HeaderStack: React.FC<HeaderStackProps> = props => {
             )}
           </View>
           <View style={headerStyles.vHeaderCenter}>
-            <Text style={headerStyles.tTitle}>{title || route.name}</Text>
+            <Text style={headerStyles.tTitle} numberOfLines={1}>
+              {title || route.name}
+            </Text>
           </View>
           <View style={headerStyles.vHeaderRight} />
         </View>

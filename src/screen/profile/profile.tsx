@@ -8,9 +8,11 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
 import { styles } from './profile.styles';
+import { useNavigation } from '@react-navigation/native';
 
 export const ProfileScreen: React.FC = () => {
   const userInfo = useSelector(getUserInfo);
+  const navigation = useNavigation<any>();
 
   const { fullname, birthday, phone, address, email, gender, username } =
     userInfo;
@@ -26,7 +28,10 @@ export const ProfileScreen: React.FC = () => {
           />
           <Text style={styles.tFullname}>{fullname}</Text>
           <Text style={styles.tUsername}>@{username}</Text>
-          <TouchableOpacity style={styles.toEdit} activeOpacity={0.8}>
+          <TouchableOpacity
+            style={styles.toEdit}
+            activeOpacity={0.8}
+            onPress={() => navigation.navigate('UpdateProfileScreen')}>
             <Icon name="edit" style={styles.icEdit} />
             <Text style={styles.tEdit}>Edit profile</Text>
           </TouchableOpacity>

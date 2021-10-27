@@ -6,6 +6,7 @@ import { RootStackParamList } from './router.type';
 import { SearchScreen } from '../screen/search';
 import { ProfileScreen } from '../screen/profile';
 import { HeaderStack } from '../components/header-stack';
+import { UpdateProfileScreen } from '../screen/profile/update';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -23,6 +24,16 @@ export const AppRoute = () => {
         options={{
           header: props => (
             <HeaderStack {...props} backButton title="Information" />
+          ),
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="UpdateProfileScreen"
+        component={UpdateProfileScreen}
+        options={{
+          header: props => (
+            <HeaderStack {...props} backButton title="Update infomation" />
           ),
           headerShown: true,
         }}

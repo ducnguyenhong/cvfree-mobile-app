@@ -5,4 +5,5 @@ export type RootStackParamList = {
   SignUp: undefined;
   SearchScreen: undefined;
   ProfileScreen: undefined;
+  UpdateProfileScreen: undefined;
 };

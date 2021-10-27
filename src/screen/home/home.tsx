@@ -5,7 +5,6 @@ import {
   FlatList,
   Image,
   ImageBackground,
-  SafeAreaView,
   ScrollView,
   StatusBar,
   Text,
@@ -30,6 +29,7 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getUserInfo } from '../../redux/selector/auth-selector';
 import ImgHeaderBackground from '../../assets/common/img_header_background.png';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 export const HomeScreen: React.FC = () => {
   const [data, setData] = useState<DashboardInfo | undefined | null>(undefined);
