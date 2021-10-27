@@ -4,6 +4,7 @@ import { headerStyles } from './tab-home.styles';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import { BottomTabHeaderProps } from '@react-navigation/bottom-tabs';
 import ImgHeaderBackground from '../../assets/common/img_header_background.png';
+import { useNavigation } from '@react-navigation/native';
 
 interface HeaderCommonProps extends BottomTabHeaderProps {
   backButton?: boolean;
@@ -12,6 +13,7 @@ interface HeaderCommonProps extends BottomTabHeaderProps {
 
 export const HeaderCommon: React.FC<HeaderCommonProps> = props => {
   const { route, backButton, title } = props;
+  const navigation = useNavigation<any>();
 
   return (
     <View style={headerStyles.vHeader}>
@@ -28,6 +30,7 @@ export const HeaderCommon: React.FC<HeaderCommonProps> = props => {
                 color="#fff"
                 style={headerStyles.icBack}
                 size={16}
+                onPress={() => navigation.goBack()}
               />
             )}
           </View>

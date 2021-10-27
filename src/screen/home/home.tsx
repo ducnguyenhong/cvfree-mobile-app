@@ -9,6 +9,7 @@ import {
   ScrollView,
   StatusBar,
   Text,
+  TouchableOpacity,
   View,
 } from 'react-native';
 import {
@@ -101,9 +102,13 @@ export const HomeScreen: React.FC = () => {
             </View>
           </View>
           <View style={styles.vToolbarRight}>
-            <View style={styles.vToolbarIcon}>
-              <Icon name="search" style={styles.icToolbarIcon} />
-            </View>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              onPress={() => navigation.navigate('SearchScreen')}>
+              <View style={styles.vToolbarIcon}>
+                <Icon name="search" style={styles.icToolbarIcon} />
+              </View>
+            </TouchableOpacity>
 
             <View style={styles.vToolbarIcon}>
               <Icon name="bell" style={styles.icToolbarIcon} />
