@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { get } from 'lodash';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, Image, Text, View } from 'react-native';
+import { FlatList, Image, RefreshControl, Text, View } from 'react-native';
 import {
   Fade,
   Placeholder,
@@ -16,6 +16,7 @@ import dayjs from 'dayjs';
 
 export const Cvs: React.FC = () => {
   const [cvs, setCvs] = useState<CvInfo[] | undefined | null>(undefined);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const callApiGetCvs = useCallback(() => {
     axios
@@ -35,6 +36,18 @@ export const Cvs: React.FC = () => {
       })
       .catch(e => console.log(e.message));
   }, []);
+
+  const wait = (timeout: number) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => {
+      setRefreshing(false);
+      callApiGetCvs();
+    });
+  }, [callApiGetCvs]);
 
   useEffect(() => {
     callApiGetCvs();
@@ -67,6 +80,9 @@ export const Cvs: React.FC = () => {
     <View style={styles.container}>
       <FlatList
         data={cvs}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         showsVerticalScrollIndicator={false}
         keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => {

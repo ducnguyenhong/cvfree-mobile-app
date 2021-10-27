@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { get } from 'lodash';
 import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, Image, Text, View } from 'react-native';
+import { FlatList, Image, Text, View, RefreshControl } from 'react-native';
 import { JobInfo } from '../../../type/job.type';
 import {
   Placeholder,
@@ -17,6 +17,7 @@ import { getSalary } from '../../../utils/helper';
 
 export const Jobs: React.FC = () => {
   const [jobs, setJobs] = useState<JobInfo[] | null | undefined>(undefined);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
 
   const callApiGetJobs = useCallback(() => {
     axios
@@ -37,6 +38,18 @@ export const Jobs: React.FC = () => {
       })
       .catch(e => console.log(e.message));
   }, []);
+
+  const wait = (timeout: number) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => {
+      setRefreshing(false);
+      callApiGetJobs();
+    });
+  }, [callApiGetJobs]);
 
   useEffect(() => {
     callApiGetJobs();
@@ -69,6 +82,9 @@ export const Jobs: React.FC = () => {
     <View style={styles.container}>
       <FlatList
         data={jobs}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         style={styles.flJobs}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => `${item.id}`}
