@@ -5,10 +5,13 @@ import { Provider } from 'react-redux';
 import { PersistGate } from 'redux-persist/integration/react';
 import Toast from 'react-native-toast-message';
 import SplashScreen from 'react-native-splash-screen';
+import { FontQsRegular } from './src/constants/fonts';
+import GlobalFont from './src/utils/global-font';
 
 export default function App() {
   useEffect(() => {
     SplashScreen.hide();
+    GlobalFont.applyGlobal(FontQsRegular);
   }, []);
 
   return (

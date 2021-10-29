@@ -54,6 +54,7 @@ export const styles = StyleSheet.create({
   tEdit: {
     color: '#fff',
     fontSize: 15,
+    fontFamily: fonts.FontQsSemiBold,
   },
 
   vBottomInfo: {

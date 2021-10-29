@@ -18,7 +18,7 @@ export const SearchScreen: React.FC = () => {
 
   return (
     <SafeAreaView style={styles.vContainer}>
-      <StatusBar barStyle="light-content" backgroundColor="blue" translucent />
+      <StatusBar backgroundColor="#47BD43" translucent />
       <View style={styles.vSearchBar}>
         <Icon
           name="chevron-left"
