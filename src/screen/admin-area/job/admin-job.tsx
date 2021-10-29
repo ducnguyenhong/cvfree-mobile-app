@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { get } from 'lodash';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { FlatList, Image, Text, View, RefreshControl } from 'react-native';
 import { JobInfo } from '../../../type/job.type';
 import {
@@ -14,6 +14,29 @@ import DefaultJobLogo from '../../../assets/job/job_default.png';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
 import { getSalary } from '../../../utils/helper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+
+const LoadingItem: React.FC = memo(() => {
+  return (
+    <Placeholder
+      Animation={Fade}
+      Left={props => (
+        <View style={styles.vLoadingLeftItem}>
+          <PlaceholderMedia
+            isRound={true}
+            style={[styles.pmLoadingLeftItem, props.style]}
+          />
+        </View>
+      )}
+      style={styles.pLoadingItem}>
+      <PlaceholderLine />
+      <PlaceholderLine width={80} />
+      <PlaceholderLine width={50} />
+      <PlaceholderLine width={50} />
+      <PlaceholderLine width={50} />
+    </Placeholder>
+  );
+});
 
 export const Jobs: React.FC = () => {
   const [jobs, setJobs] = useState<JobInfo[] | null | undefined>(undefined);
@@ -46,6 +69,7 @@ export const Jobs: React.FC = () => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => {
+      setJobs(undefined);
       setRefreshing(false);
       callApiGetJobs();
     });
@@ -58,14 +82,12 @@ export const Jobs: React.FC = () => {
   if (typeof jobs === 'undefined') {
     return (
       <View style={styles.vLoading}>
-        <Placeholder
-          Animation={Fade}
-          Left={PlaceholderMedia}
-          Right={PlaceholderMedia}>
-          <PlaceholderLine width={80} />
-          <PlaceholderLine />
-          <PlaceholderLine width={30} />
-        </Placeholder>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={[1, 2, 3, 4, 5]}
+          keyExtractor={item => JSON.stringify(item)}
+          renderItem={() => <LoadingItem />}
+        />
       </View>
     );
   }
@@ -91,7 +113,7 @@ export const Jobs: React.FC = () => {
         renderItem={({ item }) => {
           const { name, company, address, salary, timeToApply } = item;
           return (
-            <View style={styles.vJobItem}>
+            <TouchableOpacity activeOpacity={0.9} style={styles.vJobItem}>
               <View style={styles.vJobLogo}>
                 <Image
                   style={styles.imgJobLogo}
@@ -125,7 +147,7 @@ export const Jobs: React.FC = () => {
                 </View>
                 <View />
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />
