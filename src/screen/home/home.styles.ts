@@ -12,11 +12,13 @@ export const styles = StyleSheet.create({
   },
 
   vLoading: {
-    padding: 10,
+    marginTop: 100,
+    paddingHorizontal: 10,
   },
 
   vNoData: {
-    padding: 10,
+    marginTop: 100,
+    paddingHorizontal: 10,
   },
 
   // toolbar
@@ -90,7 +92,6 @@ export const styles = StyleSheet.create({
   // common
 
   vLabel: {
-    marginTop: 10,
     marginBottom: 15,
     flexDirection: 'row',
     alignItems: 'center',

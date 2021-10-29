@@ -10,7 +10,7 @@ export const styles = StyleSheet.create({
   vSearchBar: {
     flexDirection: 'row',
     alignItems: 'center',
-    paddingHorizontal: 20,
+    paddingHorizontal: 5,
     borderBottomWidth: 0.5,
     borderBottomColor: '#afafaf',
     paddingVertical: 4,
@@ -18,10 +18,12 @@ export const styles = StyleSheet.create({
 
   icBack: {
     fontSize: 20,
+    paddingVertical: 10,
+    paddingHorizontal: 15,
   },
 
   ipSearch: {
-    marginLeft: 20,
+    marginLeft: 5,
     fontSize: 15,
   },
 });

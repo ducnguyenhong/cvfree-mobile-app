@@ -38,7 +38,7 @@ export const headerStyles = StyleSheet.create({
   },
 
   icBack: {
-    paddingLeft: 20,
+    paddingHorizontal: 20,
   },
 
   vHeaderCenter: {

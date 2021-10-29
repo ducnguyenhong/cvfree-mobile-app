@@ -16,7 +16,16 @@ export const AppRoute = () => {
       screenOptions={{ headerShown: false }}
       initialRouteName="TabsHome">
       <Stack.Screen name="TabsHome" component={TabsHome} />
-      <Stack.Screen name="ChangePassword" component={ChangePassword} />
+      <Stack.Screen
+        name="ChangePassword"
+        component={ChangePassword}
+        options={{
+          header: props => (
+            <HeaderStack {...props} backButton title="Change password" />
+          ),
+          headerShown: true,
+        }}
+      />
       <Stack.Screen name="SearchScreen" component={SearchScreen} />
       <Stack.Screen
         name="ProfileScreen"

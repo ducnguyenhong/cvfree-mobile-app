@@ -51,10 +51,9 @@ export const TabsHome: React.FC = () => {
         },
         tabBarActiveTintColor: '#299D55',
         tabBarInactiveTintColor: '#A7A7A7',
-        tabBarStyle: { height: 60 },
+        tabBarStyle: { height: 55, paddingTop: 5 },
         headerStyle: {
           backgroundColor: '#31BC31',
-          height: 60,
         },
         headerTitleStyle: {
           color: '#fff',

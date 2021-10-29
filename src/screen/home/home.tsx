@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { get } from 'lodash';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { Fragment, memo, useCallback, useEffect, useState } from 'react';
 import {
   FlatList,
   Image,
@@ -31,62 +31,12 @@ import { getUserInfo } from '../../redux/selector/auth-selector';
 import ImgHeaderBackground from '../../assets/common/img_header_background.png';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-export const HomeScreen: React.FC = () => {
-  const [data, setData] = useState<DashboardInfo | undefined | null>(undefined);
+const HeaderHome: React.FC = memo(() => {
   const navigation = useNavigation<any>();
   const userInfo = useSelector(getUserInfo);
 
-  const callApiDashboard = useCallback(() => {
-    axios
-      .get('/dashboard', {
-        params: {
-          page: 1,
-          size: 10,
-        },
-      })
-      .then(response => {
-        const { data, error, success } = response.data;
-
-        if (!success || response.status > 400) {
-          throw new Error(get(error, 'message') || 'Can not fetch dashboard');
-        }
-        const { dataDashboard } = data;
-        setData(dataDashboard);
-      })
-      .catch(e => console.log(e.message));
-  }, []);
-
-  useEffect(() => {
-    callApiDashboard();
-  }, [callApiDashboard]);
-
-  if (typeof data === 'undefined') {
-    return (
-      <View style={styles.vLoading}>
-        <Placeholder
-          Animation={Fade}
-          Left={PlaceholderMedia}
-          Right={PlaceholderMedia}>
-          <PlaceholderLine width={80} />
-          <PlaceholderLine />
-          <PlaceholderLine width={30} />
-        </Placeholder>
-      </View>
-    );
-  }
-
-  if (data === null) {
-    return (
-      <View style={styles.vNoData}>
-        <Text>No data</Text>
-      </View>
-    );
-  }
-
-  const { statis, jobs, companies, cvs } = data;
-
   return (
-    <SafeAreaView>
+    <Fragment>
       <StatusBar backgroundColor="transparent" translucent />
       {/* Header toolbar */}
       <ImageBackground
@@ -118,6 +68,72 @@ export const HomeScreen: React.FC = () => {
           </View>
         </View>
       </ImageBackground>
+    </Fragment>
+  );
+});
+
+export const HomeScreen: React.FC = () => {
+  const [data, setData] = useState<DashboardInfo | undefined | null>(undefined);
+  const navigation = useNavigation<any>();
+
+  const callApiDashboard = useCallback(() => {
+    axios
+      .get('/dashboard', {
+        params: {
+          page: 1,
+          size: 10,
+        },
+      })
+      .then(response => {
+        const { data, error, success } = response.data;
+
+        if (!success || response.status > 400) {
+          throw new Error(get(error, 'message') || 'Can not fetch dashboard');
+        }
+        const { dataDashboard } = data;
+        setData(dataDashboard);
+      })
+      .catch(e => console.log(e.message));
+  }, []);
+
+  useEffect(() => {
+    callApiDashboard();
+  }, [callApiDashboard]);
+
+  if (typeof data === 'undefined') {
+    return (
+      <SafeAreaView>
+        <HeaderHome />
+        <View style={styles.vLoading}>
+          <Placeholder
+            Animation={Fade}
+            Left={PlaceholderMedia}
+            Right={PlaceholderMedia}>
+            <PlaceholderLine width={80} />
+            <PlaceholderLine />
+            <PlaceholderLine width={30} />
+          </Placeholder>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  if (data === null) {
+    return (
+      <SafeAreaView>
+        <HeaderHome />
+        <View style={styles.vNoData}>
+          <Text>No data</Text>
+        </View>
+      </SafeAreaView>
+    );
+  }
+
+  const { statis, jobs, companies, cvs } = data;
+
+  return (
+    <SafeAreaView>
+      <HeaderHome />
 
       <ScrollView showsVerticalScrollIndicator={false}>
         <View>
