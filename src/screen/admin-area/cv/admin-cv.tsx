@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { get } from 'lodash';
-import React, { useCallback, useEffect, useState } from 'react';
+import React, { memo, useCallback, useEffect, useState } from 'react';
 import { FlatList, Image, RefreshControl, Text, View } from 'react-native';
 import {
   Fade,
@@ -13,6 +13,27 @@ import { styles } from './admin-cv.styles';
 import DefaultAvatar from '../../../assets/common/default-avatar.jpg';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
+
+const LoadingItem: React.FC = memo(() => {
+  return (
+    <Placeholder
+      Animation={Fade}
+      Left={props => (
+        <View style={styles.vLoadingLeftItem}>
+          <PlaceholderMedia
+            isRound={true}
+            style={[styles.pmLoadingLeftItem, props.style]}
+          />
+        </View>
+      )}
+      style={styles.pLoadingItem}>
+      <PlaceholderLine width={80} />
+      <PlaceholderLine width={50} />
+      <PlaceholderLine width={50} />
+      <PlaceholderLine width={50} />
+    </Placeholder>
+  );
+});
 
 export const Cvs: React.FC = () => {
   const [cvs, setCvs] = useState<CvInfo[] | undefined | null>(undefined);
@@ -44,6 +65,7 @@ export const Cvs: React.FC = () => {
   const onRefresh = useCallback(() => {
     setRefreshing(true);
     wait(2000).then(() => {
+      setCvs(undefined);
       setRefreshing(false);
       callApiGetCvs();
     });
@@ -56,14 +78,12 @@ export const Cvs: React.FC = () => {
   if (typeof cvs === 'undefined') {
     return (
       <View style={styles.vLoading}>
-        <Placeholder
-          Animation={Fade}
-          Left={PlaceholderMedia}
-          Right={PlaceholderMedia}>
-          <PlaceholderLine width={80} />
-          <PlaceholderLine />
-          <PlaceholderLine width={30} />
-        </Placeholder>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={[1, 2, 3, 4, 5, 6]}
+          keyExtractor={item => JSON.stringify(item)}
+          renderItem={() => <LoadingItem />}
+        />
       </View>
     );
   }
