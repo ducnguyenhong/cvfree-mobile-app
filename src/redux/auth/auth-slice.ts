@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserInfo } from '../../type/user.type';
-import { loginAction, logoutAction } from './auth-action';
+import { loginAction, logoutAction, updateUserInfo } from './auth-action';
 
 export interface AuthState {
   token: string | null;
@@ -47,6 +47,9 @@ export const authSlice = createSlice({
       .addCase(logoutAction.fulfilled, state => {
         state.token = null;
         state.userInfo = null;
+      })
+      .addCase(updateUserInfo.fulfilled, (state, action) => {
+        state.userInfo = action.payload;
       });
   },
 });

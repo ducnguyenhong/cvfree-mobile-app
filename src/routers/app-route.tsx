@@ -6,7 +6,7 @@ import { RootStackParamList } from './router.type';
 import { SearchScreen } from '../screen/search';
 import { ProfileScreen } from '../screen/profile';
 import { HeaderStack } from '../components/header-stack';
-import { UpdateProfileScreen } from '../screen/profile/update';
+import { UpdateProfileScreen } from '../screen/profile-update';
 
 const Stack = createStackNavigator<RootStackParamList>();
 

@@ -2,6 +2,7 @@ import { createAsyncThunk } from '@reduxjs/toolkit';
 import axios, { AxiosResponse } from 'axios';
 import { get } from 'lodash';
 import Toast from 'react-native-toast-message';
+import { UserInfo } from '../../type/user.type';
 
 export const loginAction = createAsyncThunk(
   'login-request',
@@ -44,3 +45,10 @@ export const loginAction = createAsyncThunk(
 export const logoutAction = createAsyncThunk('logout', () => {
   return true;
 });
+
+export const updateUserInfo = createAsyncThunk(
+  'update-info',
+  (userInfo: UserInfo) => {
+    return userInfo;
+  },
+);
