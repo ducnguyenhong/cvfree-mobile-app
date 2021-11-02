@@ -105,14 +105,112 @@ export const HomeScreen: React.FC = () => {
       <SafeAreaView>
         <HeaderHome />
         <View style={styles.vLoading}>
-          <Placeholder
-            Animation={Fade}
-            Left={PlaceholderMedia}
-            Right={PlaceholderMedia}>
-            <PlaceholderLine width={80} />
-            <PlaceholderLine />
-            <PlaceholderLine width={30} />
-          </Placeholder>
+          <View>
+            <View style={styles.vLabel}>
+              <Text style={styles.tLabel}>Statistics</Text>
+            </View>
+            <View style={styles.vLdStatis}>
+              <View style={styles.vLdItemStatis}>
+                <Placeholder Animation={Fade} Left={PlaceholderMedia}>
+                  <PlaceholderLine width={40} />
+                </Placeholder>
+              </View>
+              <View style={styles.vLdItemStatis}>
+                <Placeholder Animation={Fade} Left={PlaceholderMedia}>
+                  <PlaceholderLine width={40} />
+                </Placeholder>
+              </View>
+              <View style={styles.vLdItemStatis}>
+                <Placeholder Animation={Fade} Left={PlaceholderMedia}>
+                  <PlaceholderLine width={40} />
+                </Placeholder>
+              </View>
+            </View>
+          </View>
+
+          <View style={styles.vLdJobs}>
+            <View style={styles.vLabel}>
+              <Text style={styles.tLabel}>Jobs</Text>
+            </View>
+            <View>
+              <FlatList
+                data={[1, 2]}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.flLdJob}
+                keyExtractor={item => `${item}`}
+                renderItem={() => {
+                  return (
+                    <View style={styles.vLdItemJob}>
+                      <Placeholder Animation={Fade}>
+                        <Placeholder Left={PlaceholderMedia}>
+                          <PlaceholderLine width={80} />
+                          <PlaceholderLine width={80} />
+                        </Placeholder>
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                      </Placeholder>
+                    </View>
+                  );
+                }}
+              />
+            </View>
+          </View>
+
+          <View style={styles.vLdJobs}>
+            <View style={styles.vLabel}>
+              <Text style={styles.tLabel}>Cvs</Text>
+            </View>
+            <View>
+              <FlatList
+                data={[1, 2]}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.flLdJob}
+                keyExtractor={item => `${item}`}
+                renderItem={() => {
+                  return (
+                    <View style={styles.vLdItemJob}>
+                      <Placeholder Animation={Fade} Left={PlaceholderMedia}>
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                      </Placeholder>
+                    </View>
+                  );
+                }}
+              />
+            </View>
+          </View>
+
+          <View style={styles.vLdJobs}>
+            <View style={styles.vLabel}>
+              <Text style={styles.tLabel}>Companies</Text>
+            </View>
+            <View>
+              <FlatList
+                data={[1, 2]}
+                horizontal
+                showsHorizontalScrollIndicator={false}
+                style={styles.flLdJob}
+                keyExtractor={item => `${item}`}
+                renderItem={() => {
+                  return (
+                    <View style={styles.vLdItemJob}>
+                      <Placeholder Animation={Fade} Left={PlaceholderMedia}>
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                        <PlaceholderLine style={styles.vLdItemJobLine} />
+                      </Placeholder>
+                    </View>
+                  );
+                }}
+              />
+            </View>
+          </View>
         </View>
       </SafeAreaView>
     );

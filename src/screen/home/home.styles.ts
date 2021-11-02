@@ -11,8 +11,36 @@ export const styles = StyleSheet.create({
     paddingTop: 100,
   },
 
+  // loading
+
   vLoading: {
     marginTop: 100,
+    paddingHorizontal: 15,
+  },
+
+  vLdStatis: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+  },
+
+  vLdItemStatis: {
+    flex: 1 / 3,
+  },
+
+  vLdJobs: {
+    marginTop: 30,
+  },
+
+  vLdItemJob: {
+    width: 230,
+    marginRight: 20,
+  },
+
+  vLdItemJobLine: {
+    width: '100%',
+  },
+
+  flLdJob: {
     paddingHorizontal: 10,
   },
 
