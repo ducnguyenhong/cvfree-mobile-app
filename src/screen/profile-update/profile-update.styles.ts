@@ -119,7 +119,7 @@ export const styles = StyleSheet.create({
 
   vBtnUpdate: {
     marginTop: 20,
-    marginBottom: 50,
+    paddingBottom: 80,
   },
 
   toBtnUpdate: {

@@ -2,6 +2,7 @@ import { Formik } from 'formik';
 import React, { useCallback, useState } from 'react';
 import {
   Image,
+  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
@@ -180,7 +181,10 @@ export const UpdateProfileScreen: React.FC = () => {
   }, []);
 
   return (
-    <View style={styles.vContainer}>
+    <ScrollView
+      showsVerticalScrollIndicator={false}
+      nestedScrollEnabled
+      style={styles.vContainer}>
       <Formik
         initialValues={initialValues}
         validationSchema={updateInfoSchema}
@@ -229,7 +233,7 @@ export const UpdateProfileScreen: React.FC = () => {
           isSubmitting,
           setFieldValue,
         }) => (
-          <ScrollView showsVerticalScrollIndicator={false}>
+          <View>
             <View style={styles.vItemInput}>
               <Text style={styles.tLabelInput}>Avatar</Text>
               <View style={styles.vRowInputAvatar}>
@@ -347,6 +351,8 @@ export const UpdateProfileScreen: React.FC = () => {
                   setItems={setItemsGender}
                   value={valueGender || null}
                   setValue={setValueGender}
+                  scrollViewProps={{ nestedScrollEnabled: true }}
+                  listMode="SCROLLVIEW"
                 />
               </View>
               <Text style={styles.tErrorInput}>
@@ -416,9 +422,9 @@ export const UpdateProfileScreen: React.FC = () => {
                 </View>
               </View>
             </Modal>
-          </ScrollView>
+          </View>
         )}
       </Formik>
-    </View>
+    </ScrollView>
   );
 };
