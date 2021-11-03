@@ -48,7 +48,7 @@ export const styles = StyleSheet.create({
     paddingHorizontal: 15,
   },
 
-  vCvItem: {
+  toCvItem: {
     flexDirection: 'row',
     borderRadius: 8,
     padding: 10,
@@ -64,6 +64,10 @@ export const styles = StyleSheet.create({
     shadowRadius: 1.41,
 
     elevation: 2,
+  },
+
+  vCvItem: {
+    flexDirection: 'row',
   },
 
   vCvAvatar: {

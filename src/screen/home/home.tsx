@@ -369,7 +369,11 @@ export const HomeScreen: React.FC = () => {
               <View>
                 <View style={styles.vLabel}>
                   <Text style={styles.tLabel}>Cvs</Text>
-                  <Text style={styles.tSeeAll}>See all</Text>
+                  <Text
+                    style={styles.tSeeAll}
+                    onPress={() => navigation.navigate('Cv')}>
+                    See all
+                  </Text>
                 </View>
                 <View>
                   <FlatList
@@ -379,63 +383,73 @@ export const HomeScreen: React.FC = () => {
                     showsHorizontalScrollIndicator={false}
                     keyExtractor={item => `${item.id}`}
                     renderItem={({ item }) => {
-                      const { detail, career } = item;
+                      const { detail, career, _id } = item;
                       const { fullname, gender, birthday, address } = detail;
                       return (
-                        <View style={styles.vCvItem}>
-                          <View style={styles.vCvAvatar}>
-                            <Image
-                              style={styles.imgCvAvatar}
-                              source={DefaultAvatar}
-                              resizeMode="contain"
-                            />
-                          </View>
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('CvDetail', {
+                              id: _id,
+                              fullname,
+                            })
+                          }
+                          activeOpacity={0.8}
+                          style={styles.toCvItem}>
+                          <View style={styles.vCvItem}>
+                            <View style={styles.vCvAvatar}>
+                              <Image
+                                style={styles.imgCvAvatar}
+                                source={DefaultAvatar}
+                                resizeMode="contain"
+                              />
+                            </View>
 
-                          <View style={styles.vCvContent}>
-                            <View style={styles.vCvFullname}>
-                              <Text
-                                style={styles.tCvFullname}
-                                numberOfLines={1}>
-                                {fullname}
-                              </Text>
-                              <Icon
-                                style={styles.icCvGender}
-                                name={gender === 'MALE' ? 'mars' : 'venus'}
-                                color={
-                                  gender === 'MALE' ? '#5858E5' : '#FF647E'
-                                }
-                                size={15}
-                              />
-                            </View>
-                            <View style={styles.vCvBirthday}>
-                              <Icon
-                                name="birthday-cake"
-                                style={styles.icCvBirthday}
-                              />
-                              <Text style={styles.tCvBirthday}>
-                                {dayjs(birthday).format('DD/MM/YYYY')}
-                              </Text>
-                            </View>
-                            <View style={styles.vCvAddress}>
-                              <Icon
-                                style={styles.icCvAddress}
-                                name="map-marker-alt"
-                              />
-                              <Text style={styles.tCvAddress}>
-                                {address?.label}
-                              </Text>
-                            </View>
-                            <View style={styles.vCvCareer}>
-                              <Icon
-                                name="briefcase"
-                                style={styles.icCvCareer}
-                              />
-                              <Text style={styles.tCvCareer}>
-                                {career?.label}
-                              </Text>
+                            <View style={styles.vCvContent}>
+                              <View style={styles.vCvFullname}>
+                                <Text
+                                  style={styles.tCvFullname}
+                                  numberOfLines={1}>
+                                  {fullname}
+                                </Text>
+                                <Icon
+                                  style={styles.icCvGender}
+                                  name={gender === 'MALE' ? 'mars' : 'venus'}
+                                  color={
+                                    gender === 'MALE' ? '#5858E5' : '#FF647E'
+                                  }
+                                  size={15}
+                                />
+                              </View>
+                              <View style={styles.vCvBirthday}>
+                                <Icon
+                                  name="birthday-cake"
+                                  style={styles.icCvBirthday}
+                                />
+                                <Text style={styles.tCvBirthday}>
+                                  {dayjs(birthday).format('DD/MM/YYYY')}
+                                </Text>
+                              </View>
+                              <View style={styles.vCvAddress}>
+                                <Icon
+                                  style={styles.icCvAddress}
+                                  name="map-marker-alt"
+                                />
+                                <Text style={styles.tCvAddress}>
+                                  {address?.label}
+                                </Text>
+                              </View>
+                              <View style={styles.vCvCareer}>
+                                <Icon
+                                  name="briefcase"
+                                  style={styles.icCvCareer}
+                                />
+                                <Text style={styles.tCvCareer}>
+                                  {career?.label}
+                                </Text>
+                              </View>
                             </View>
                           </View>
-                        </View>
+                        </TouchableOpacity>
                       );
                     }}
                   />

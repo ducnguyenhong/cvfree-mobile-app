@@ -278,7 +278,7 @@ export const styles = StyleSheet.create({
 
   // cv
 
-  vCvItem: {
+  toCvItem: {
     flexDirection: 'row',
     marginRight: 20,
     padding: 10,
@@ -294,6 +294,10 @@ export const styles = StyleSheet.create({
     shadowRadius: 1.41,
 
     elevation: 2,
+  },
+
+  vCvItem: {
+    flexDirection: 'row',
   },
 
   flContentCv: {
