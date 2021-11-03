@@ -285,61 +285,80 @@ export const HomeScreen: React.FC = () => {
                     keyExtractor={item => `${item._id}`}
                     showsHorizontalScrollIndicator={false}
                     renderItem={({ item }) => {
-                      const { name, company, salary, timeToApply, address } =
-                        item;
+                      const {
+                        name,
+                        company,
+                        salary,
+                        timeToApply,
+                        address,
+                        _id,
+                      } = item;
                       return (
-                        <View style={styles.jobItem}>
-                          <View style={styles.vJobItemTop}>
-                            <Image
-                              source={DefaultJobLogo}
-                              style={styles.imgJobLogo}
-                            />
-                            <View style={styles.vJobInfo}>
-                              <Text style={styles.tJobName} numberOfLines={2}>
-                                {name}
-                              </Text>
-                              <Text
-                                style={styles.tJobCompanyName}
-                                numberOfLines={1}>
-                                {company?.name}
-                              </Text>
-                            </View>
-                          </View>
-                          <View style={styles.vJobItemBottom}>
-                            <View style={styles.vJobInfoRow}>
-                              <Icon
-                                name="map-marker-alt"
-                                style={styles.icJobInfoRow}
+                        <TouchableOpacity
+                          onPress={() =>
+                            navigation.navigate('JobDetail', { id: _id })
+                          }
+                          style={styles.toJobItem}
+                          activeOpacity={0.85}>
+                          <View style={styles.vJobItem}>
+                            <View style={styles.vJobItemTop}>
+                              <Image
+                                source={DefaultJobLogo}
+                                style={styles.imgJobLogo}
                               />
-                              <Text style={styles.tJobInfoLabelRow}>
-                                Address:
-                              </Text>
-                              <Text style={styles.tJobInfValueRow}>
-                                {address?.label}
-                              </Text>
+                              <View style={styles.vJobInfo}>
+                                <Text style={styles.tJobName} numberOfLines={2}>
+                                  {name}
+                                </Text>
+                                <Text
+                                  style={styles.tJobCompanyName}
+                                  numberOfLines={1}>
+                                  {company?.name}
+                                </Text>
+                              </View>
                             </View>
+                            <View style={styles.vJobItemBottom}>
+                              <View style={styles.vJobInfoRow}>
+                                <Icon
+                                  name="map-marker-alt"
+                                  style={styles.icJobInfoRow}
+                                />
+                                <Text style={styles.tJobInfoLabelRow}>
+                                  Address:
+                                </Text>
+                                <Text style={styles.tJobInfValueRow}>
+                                  {address?.label}
+                                </Text>
+                              </View>
 
-                            <View style={styles.vJobInfoRow}>
-                              <Icon name="coins" style={styles.icJobInfoRow} />
-                              <Text style={styles.tJobInfoLabelRow}>
-                                Salary:
-                              </Text>
-                              <Text style={styles.tJobInfValueRow}>
-                                {getSalary(salary)}
-                              </Text>
-                            </View>
+                              <View style={styles.vJobInfoRow}>
+                                <Icon
+                                  name="coins"
+                                  style={styles.icJobInfoRow}
+                                />
+                                <Text style={styles.tJobInfoLabelRow}>
+                                  Salary:
+                                </Text>
+                                <Text style={styles.tJobInfValueRow}>
+                                  {getSalary(salary)}
+                                </Text>
+                              </View>
 
-                            <View style={styles.vJobInfoRow}>
-                              <Icon name="clock" style={styles.icJobInfoRow} />
-                              <Text style={styles.tJobInfoLabelRow}>
-                                Recruitment deadline:
-                              </Text>
-                              <Text style={styles.tJobInfValueRow}>
-                                {dayjs(timeToApply).format('DD/MM/YYYY')}
-                              </Text>
+                              <View style={styles.vJobInfoRow}>
+                                <Icon
+                                  name="clock"
+                                  style={styles.icJobInfoRow}
+                                />
+                                <Text style={styles.tJobInfoLabelRow}>
+                                  Recruitment deadline:
+                                </Text>
+                                <Text style={styles.tJobInfValueRow}>
+                                  {dayjs(timeToApply).format('DD/MM/YYYY')}
+                                </Text>
+                              </View>
                             </View>
                           </View>
-                        </View>
+                        </TouchableOpacity>
                       );
                     }}
                   />

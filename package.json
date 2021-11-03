@@ -1,6 +1,6 @@
 {
   "name": "reactnativecvfree",
-  "version": "20211102.09.31",
+  "version": "20211103.13.45",
   "private": true,
   "scripts": {
     "android": "react-native run-android",
@@ -32,6 +32,7 @@
     "react-native-modal": "^13.0.0",
     "react-native-modal-datetime-picker": "^13.0.0",
     "react-native-permissions": "^3.1.0",
+    "react-native-render-html": "^6.2.0",
     "react-native-responsive-screen": "^1.4.2",
     "react-native-safe-area-context": "^3.3.2",
     "react-native-screens": "^3.8.0",
@@ -39,6 +40,7 @@
     "react-native-toast-message": "^1.6.0",
     "react-native-uuid": "^2.0.1",
     "react-native-vector-icons": "^8.1.0",
+    "react-native-webview": "^11.14.2",
     "react-redux": "^7.2.5",
     "redux-persist": "^6.0.0",
     "rn-placeholder": "^3.0.3",

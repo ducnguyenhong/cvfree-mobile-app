@@ -6,4 +6,5 @@ export type RootStackParamList = {
   SearchScreen: undefined;
   ProfileScreen: undefined;
   UpdateProfileScreen: undefined;
+  JobDetail: undefined;
 };

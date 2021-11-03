@@ -15,6 +15,7 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
 import { getSalary } from '../../../utils/helper';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
 
 const LoadingItem: React.FC = memo(() => {
   return (
@@ -41,6 +42,7 @@ const LoadingItem: React.FC = memo(() => {
 export const Jobs: React.FC = () => {
   const [jobs, setJobs] = useState<JobInfo[] | null | undefined>(undefined);
   const [refreshing, setRefreshing] = useState<boolean>(false);
+  const navigation = useNavigation<any>();
 
   const callApiGetJobs = useCallback(() => {
     axios
@@ -111,9 +113,12 @@ export const Jobs: React.FC = () => {
         showsVerticalScrollIndicator={false}
         keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => {
-          const { name, company, address, salary, timeToApply } = item;
+          const { name, company, address, salary, timeToApply, _id } = item;
           return (
-            <TouchableOpacity activeOpacity={0.9} style={styles.vJobItem}>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.vJobItem}
+              onPress={() => navigation.navigate('JobDetail', { id: _id })}>
               <View style={styles.vJobLogo}>
                 <Image
                   style={styles.imgJobLogo}

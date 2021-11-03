@@ -210,7 +210,9 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
 
-  jobItem: {
+  vJobItem: {},
+
+  toJobItem: {
     marginRight: 20,
     // borderWidth: 1,
     padding: 10,

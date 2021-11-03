@@ -7,6 +7,7 @@ import { SearchScreen } from '../screen/search';
 import { ProfileScreen } from '../screen/profile';
 import { HeaderStack } from '../components/header-stack';
 import { UpdateProfileScreen } from '../screen/profile-update';
+import { JobDetail } from '../screen/job-detail';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
@@ -43,6 +44,16 @@ export const AppRoute = () => {
         options={{
           header: props => (
             <HeaderStack {...props} backButton title="Update infomation" />
+          ),
+          headerShown: true,
+        }}
+      />
+      <Stack.Screen
+        name="JobDetail"
+        component={JobDetail}
+        options={{
+          header: props => (
+            <HeaderStack {...props} backButton title="Job detail" />
           ),
           headerShown: true,
         }}
