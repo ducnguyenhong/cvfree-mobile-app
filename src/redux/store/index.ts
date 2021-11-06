@@ -14,6 +14,7 @@ import {
   REHYDRATE,
 } from 'redux-persist';
 import { authSlice } from '../auth/auth-slice';
+import { langSlice } from '../lang/lang.slice';
 
 const migrations = {
   0: (state: any) => {
@@ -33,6 +34,7 @@ const persistedReducer = persistReducer(
   persistConfig,
   combineReducers({
     [authSlice.name]: authSlice.reducer,
+    language: langSlice.reducer,
   }),
 );
 

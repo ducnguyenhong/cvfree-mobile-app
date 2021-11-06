@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { get } from 'lodash';
-import React, { useCallback, useEffect, useState } from 'react';
-import { FlatList, Image, Text, View } from 'react-native';
+import React, { memo, useCallback, useEffect, useState } from 'react';
+import { FlatList, Image, Text, View, RefreshControl } from 'react-native';
 import { JobInfo } from '../../../type/job.type';
 import {
   Placeholder,
@@ -14,9 +14,35 @@ import DefaultJobLogo from '../../../assets/job/job_default.png';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
 import { getSalary } from '../../../utils/helper';
+import { TouchableOpacity } from 'react-native-gesture-handler';
+import { useNavigation } from '@react-navigation/native';
+
+const LoadingItem: React.FC = memo(() => {
+  return (
+    <Placeholder
+      Animation={Fade}
+      Left={props => (
+        <View style={styles.vLoadingLeftItem}>
+          <PlaceholderMedia
+            isRound={true}
+            style={[styles.pmLoadingLeftItem, props.style]}
+          />
+        </View>
+      )}
+      style={styles.pLoadingItem}>
+      <PlaceholderLine />
+      <PlaceholderLine width={80} />
+      <PlaceholderLine width={50} />
+      <PlaceholderLine width={50} />
+      <PlaceholderLine width={50} />
+    </Placeholder>
+  );
+});
 
 export const Jobs: React.FC = () => {
   const [jobs, setJobs] = useState<JobInfo[] | null | undefined>(undefined);
+  const [refreshing, setRefreshing] = useState<boolean>(false);
+  const navigation = useNavigation<any>();
 
   const callApiGetJobs = useCallback(() => {
     axios
@@ -38,6 +64,19 @@ export const Jobs: React.FC = () => {
       .catch(e => console.log(e.message));
   }, []);
 
+  const wait = (timeout: number) => {
+    return new Promise(resolve => setTimeout(resolve, timeout));
+  };
+
+  const onRefresh = useCallback(() => {
+    setRefreshing(true);
+    wait(2000).then(() => {
+      setJobs(undefined);
+      setRefreshing(false);
+      callApiGetJobs();
+    });
+  }, [callApiGetJobs]);
+
   useEffect(() => {
     callApiGetJobs();
   }, [callApiGetJobs]);
@@ -45,14 +84,12 @@ export const Jobs: React.FC = () => {
   if (typeof jobs === 'undefined') {
     return (
       <View style={styles.vLoading}>
-        <Placeholder
-          Animation={Fade}
-          Left={PlaceholderMedia}
-          Right={PlaceholderMedia}>
-          <PlaceholderLine width={80} />
-          <PlaceholderLine />
-          <PlaceholderLine width={30} />
-        </Placeholder>
+        <FlatList
+          showsVerticalScrollIndicator={false}
+          data={[1, 2, 3, 4, 5]}
+          keyExtractor={item => JSON.stringify(item)}
+          renderItem={() => <LoadingItem />}
+        />
       </View>
     );
   }
@@ -69,13 +106,19 @@ export const Jobs: React.FC = () => {
     <View style={styles.container}>
       <FlatList
         data={jobs}
+        refreshControl={
+          <RefreshControl refreshing={refreshing} onRefresh={onRefresh} />
+        }
         style={styles.flJobs}
         showsVerticalScrollIndicator={false}
         keyExtractor={item => `${item.id}`}
         renderItem={({ item }) => {
-          const { name, company, address, salary, timeToApply } = item;
+          const { name, company, address, salary, timeToApply, _id } = item;
           return (
-            <View style={styles.vJobItem}>
+            <TouchableOpacity
+              activeOpacity={0.9}
+              style={styles.vJobItem}
+              onPress={() => navigation.navigate('JobDetail', { id: _id })}>
               <View style={styles.vJobLogo}>
                 <Image
                   style={styles.imgJobLogo}
@@ -109,7 +152,7 @@ export const Jobs: React.FC = () => {
                 </View>
                 <View />
               </View>
-            </View>
+            </TouchableOpacity>
           );
         }}
       />

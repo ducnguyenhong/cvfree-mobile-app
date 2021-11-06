@@ -3,4 +3,9 @@ export type RootStackParamList = {
   ChangePassword: undefined;
   SignIn: undefined;
   SignUp: undefined;
+  SearchScreen: undefined;
+  ProfileScreen: undefined;
+  UpdateProfileScreen: undefined;
+  JobDetail: undefined;
+  CvDetail: undefined;
 };

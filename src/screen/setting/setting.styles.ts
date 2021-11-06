@@ -99,4 +99,55 @@ export const styles = StyleSheet.create({
   },
 
   tVersion: {},
+
+  // modal change language
+
+  vChangeLang: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+  },
+
+  vCLIconClose: {
+    alignItems: 'flex-end',
+  },
+
+  icCLClose: {
+    fontSize: 20,
+    padding: 15,
+  },
+
+  vCLContent: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 40,
+  },
+
+  toCLLangVN: {
+    marginRight: 40,
+    alignItems: 'center',
+  },
+
+  imgCLFlagVN: {
+    width: 80,
+    height: 60,
+  },
+
+  tCLLangVN: {
+    fontFamily: fonts.FontQsSemiBold,
+  },
+
+  toCLLangEN: {
+    alignItems: 'center',
+  },
+
+  imgCLFlagEN: {
+    width: 80,
+    height: 60,
+  },
+
+  tCLLangEN: {
+    fontFamily: fonts.FontQsSemiBold,
+  },
 });

@@ -2,6 +2,9 @@ import axios from 'axios';
 import { get } from 'lodash';
 import { SERVER_URL } from '../constants/url';
 import Toast from 'react-native-toast-message';
+import { Alert } from 'react-native';
+import store from '../redux/store';
+import { logoutAction } from '../redux/auth/auth-action';
 
 let interceptorId: number | null = null;
 let interceptorResId: number | null = null;
@@ -13,8 +16,6 @@ export function setupAxios(token?: string) {
 
   interceptorId = axios.interceptors.request.use(
     config => {
-      console.log('ducnh request', config);
-
       if (!config.url?.startsWith('https://')) {
         config.url = `${SERVER_URL}${config.url}`;
         config.timeout = 20000;
@@ -50,21 +51,31 @@ export function setupAxiosResponse() {
   }
 
   interceptorResId = axios.interceptors.response.use(
-    response => {
-      console.log('ducnh response', response.data);
-      return response;
-    },
+    response => response,
     err => {
-      console.log('ducnh error', err.response.data);
-
       if (err.response && err.response.data) {
         const { message } = err.response.data.error;
-        Toast.show({
-          type: 'error',
-          text1: `${err.response.status}`,
-          text2: `${message}`,
-          autoHide: false,
-        });
+        if (message === 'ACCOUNT_LOGGED_IN_SOMEWHERE_ELSE') {
+          Alert.alert('Account logged in somewhere else', '', [
+            {
+              text: 'OK',
+              onPress: () => {
+                try {
+                  store.dispatch(logoutAction());
+                } catch (e) {
+                  // saving error
+                }
+              },
+            },
+          ]);
+        } else {
+          Toast.show({
+            type: 'error',
+            text1: `${err.response.status}`,
+            text2: `${message}`,
+            autoHide: false,
+          });
+        }
 
         return Promise.reject(message ? new Error(message) : err);
       }

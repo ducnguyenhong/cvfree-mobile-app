@@ -1,6 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
 import { UserInfo } from '../../type/user.type';
-import { loginAction, logoutAction } from './auth-action';
+import { loginAction, logoutAction, updateUserInfo } from './auth-action';
 
 export interface AuthState {
   token: string | null;
@@ -25,10 +25,9 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(loginAction.fulfilled, (state, action) => {
-        const loginResponse = action.payload.data;
-
-        state.token = loginResponse.token;
-        state.userInfo = loginResponse.userInfo;
+        const loginResponse = action.payload?.data;
+        state.token = loginResponse?.token || null;
+        state.userInfo = loginResponse?.userInfo || null;
         state.request = {
           loading: false,
         };
@@ -47,6 +46,9 @@ export const authSlice = createSlice({
       .addCase(logoutAction.fulfilled, state => {
         state.token = null;
         state.userInfo = null;
+      })
+      .addCase(updateUserInfo.fulfilled, (state, action) => {
+        state.userInfo = action.payload;
       });
   },
 });

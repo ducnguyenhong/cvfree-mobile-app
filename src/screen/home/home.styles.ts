@@ -11,12 +11,42 @@ export const styles = StyleSheet.create({
     paddingTop: 100,
   },
 
+  // loading
+
   vLoading: {
-    padding: 10,
+    marginTop: 100,
+    paddingHorizontal: 15,
+  },
+
+  vLdStatis: {
+    flexDirection: 'row',
+    paddingHorizontal: 20,
+  },
+
+  vLdItemStatis: {
+    flex: 1 / 3,
+  },
+
+  vLdJobs: {
+    marginTop: 30,
+  },
+
+  vLdItemJob: {
+    width: 230,
+    marginRight: 20,
+  },
+
+  vLdItemJobLine: {
+    width: '100%',
+  },
+
+  flLdJob: {
+    paddingHorizontal: 10,
   },
 
   vNoData: {
-    padding: 10,
+    marginTop: 100,
+    paddingHorizontal: 10,
   },
 
   // toolbar
@@ -90,7 +120,6 @@ export const styles = StyleSheet.create({
   // common
 
   vLabel: {
-    marginTop: 10,
     marginBottom: 15,
     flexDirection: 'row',
     alignItems: 'center',
@@ -181,7 +210,9 @@ export const styles = StyleSheet.create({
     padding: 10,
   },
 
-  jobItem: {
+  vJobItem: {},
+
+  toJobItem: {
     marginRight: 20,
     // borderWidth: 1,
     padding: 10,
@@ -247,7 +278,7 @@ export const styles = StyleSheet.create({
 
   // cv
 
-  vCvItem: {
+  toCvItem: {
     flexDirection: 'row',
     marginRight: 20,
     padding: 10,
@@ -263,6 +294,10 @@ export const styles = StyleSheet.create({
     shadowRadius: 1.41,
 
     elevation: 2,
+  },
+
+  vCvItem: {
+    flexDirection: 'row',
   },
 
   flContentCv: {
