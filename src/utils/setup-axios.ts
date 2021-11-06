@@ -16,8 +16,6 @@ export function setupAxios(token?: string) {
 
   interceptorId = axios.interceptors.request.use(
     config => {
-      console.log('ducnh request', config);
-
       if (!config.url?.startsWith('https://')) {
         config.url = `${SERVER_URL}${config.url}`;
         config.timeout = 20000;
@@ -53,17 +51,10 @@ export function setupAxiosResponse() {
   }
 
   interceptorResId = axios.interceptors.response.use(
-    response => {
-      console.log('ducnh response', response.data);
-      return response;
-    },
+    response => response,
     err => {
-      console.log('ducnh error', err.response.data);
-
       if (err.response && err.response.data) {
         const { message } = err.response.data.error;
-        console.log('ducnh99', err.response.data);
-
         if (message === 'ACCOUNT_LOGGED_IN_SOMEWHERE_ELSE') {
           Alert.alert('Account logged in somewhere else', '', [
             {

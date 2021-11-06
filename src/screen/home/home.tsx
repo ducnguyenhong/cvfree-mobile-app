@@ -27,7 +27,7 @@ import { getSalary } from '../../utils/helper';
 import DefaultCompanyLogo from '../../assets/common/default-company-logo.png';
 import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
-import { getUserInfo } from '../../redux/selector/auth-selector';
+import { getUserInfo, getUserToken } from '../../redux/selector/auth-selector';
 import ImgHeaderBackground from '../../assets/common/img_header_background.png';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
@@ -75,26 +75,24 @@ const HeaderHome: React.FC = memo(() => {
 export const HomeScreen: React.FC = () => {
   const [data, setData] = useState<DashboardInfo | undefined | null>(undefined);
   const navigation = useNavigation<any>();
+  const token = useSelector(getUserToken);
 
   const callApiDashboard = useCallback(() => {
-    axios
-      .get('/dashboard', {
-        params: {
-          page: 1,
-          size: 10,
-        },
-      })
-      .then(response => {
-        const { data, error, success } = response.data;
+    if (token) {
+      axios
+        .get('/dashboard')
+        .then(response => {
+          const { data: dataRes, error, success } = response.data;
 
-        if (!success || response.status > 400) {
-          throw new Error(get(error, 'message') || 'Can not fetch dashboard');
-        }
-        const { dataDashboard } = data;
-        setData(dataDashboard);
-      })
-      .catch(e => console.log(e.message));
-  }, []);
+          if (!success || response.status > 400) {
+            throw new Error(get(error, 'message') || 'Can not fetch dashboard');
+          }
+          const { dataDashboard } = dataRes;
+          setData(dataDashboard);
+        })
+        .catch(e => console.log(e.message));
+    }
+  }, [token]);
 
   useEffect(() => {
     callApiDashboard();

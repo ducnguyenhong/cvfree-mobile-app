@@ -44,8 +44,7 @@ export const SignIn: React.FC = () => {
                 console.log(response);
                 setSubmitting(false);
               })
-              .catch(error => {
-                console.log('ducnh3', error);
+              .catch(() => {
                 setSubmitting(false);
               });
           }}>

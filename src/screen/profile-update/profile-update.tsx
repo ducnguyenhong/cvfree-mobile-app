@@ -2,7 +2,6 @@ import { Formik } from 'formik';
 import React, { useCallback, useState } from 'react';
 import {
   Image,
-  SafeAreaView,
   ScrollView,
   Text,
   TextInput,
@@ -82,44 +81,7 @@ export const UpdateProfileScreen: React.FC = () => {
             const { mime, path } = image;
             setUriAvatar(path);
             setTypeAvatar(mime);
-            // uploadServer(
-            //   {
-            //     uri: path,
-            //     name: `${uuid.v4()}`,
-            //     type: mime,
-            //   },
-            //   `${uuid.v4()}`,
-            // )
-            //   .then(imageUrl => {
-            //     console.log('ducnh8', imageUrl);
-            //   })
-            //   .catch(e => console.log('ducnh9', e.message));
           });
-
-          // launchImageLibrary(options, response => {
-          //   console.log('ducnh5', response);
-          //   if (response.didCancel) {
-          //     console.log('User cancelled image picker');
-          //   } else if (response.errorMessage) {
-          //     console.log('ImagePicker Error: ', response.errorMessage);
-          //   } else {
-          //     if (response.assets && response.assets.length) {
-          //       const { uri, type } = response.assets[0];
-          //       uploadServer(
-          //         {
-          //           uri,
-          //           name: `${uuid.v4()}`,
-          //           type,
-          //         },
-          //         `${uuid.v4()}`,
-          //       )
-          //         .then(imageUrl => {
-          //           console.log('ducnh8', imageUrl);
-          //         })
-          //         .catch(e => console.log('ducnh9', e.message));
-          //     }
-          //   }
-          // });
         } else if (status === PERMISSION_STATUS.BLOCKED) {
           setShowModalSetting(true);
         } else {
@@ -380,7 +342,7 @@ export const UpdateProfileScreen: React.FC = () => {
                       setFieldValue('avatar', imageUrl);
                       handleSubmit();
                     })
-                    .catch(e => console.log('ducnh9', e.message));
+                    .catch(e => console.log('error upload', e.message));
                 }}>
                 <Text style={styles.tBtnUpdate}>Update</Text>
               </TouchableOpacity>

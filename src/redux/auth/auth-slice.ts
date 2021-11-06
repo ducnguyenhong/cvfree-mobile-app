@@ -25,10 +25,9 @@ export const authSlice = createSlice({
   extraReducers: builder => {
     builder
       .addCase(loginAction.fulfilled, (state, action) => {
-        const loginResponse = action.payload.data;
-
-        state.token = loginResponse.token;
-        state.userInfo = loginResponse.userInfo;
+        const loginResponse = action.payload?.data;
+        state.token = loginResponse?.token || null;
+        state.userInfo = loginResponse?.userInfo || null;
         state.request = {
           loading: false,
         };
