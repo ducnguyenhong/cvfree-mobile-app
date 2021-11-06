@@ -1,5 +1,5 @@
-import React, { useCallback } from 'react';
-import { Alert, Image, Text, View } from 'react-native';
+import React, { useCallback, useState } from 'react';
+import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../../redux/auth/auth-action';
 import { styles } from './setting.styles';
@@ -7,14 +7,19 @@ import DefaultAvatar from '../../assets/common/default-avatar.jpg';
 import { getUserInfo } from '../../redux/selector/auth-selector';
 import Icon from 'react-native-vector-icons/FontAwesome5';
 import packageJson from '../../../package.json';
-import { TouchableOpacity } from 'react-native-gesture-handler';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
+import Modal from 'react-native-modal';
+import ImageFlagVI from '../../assets/lang/vi.png';
+import ImageFlagEN from '../../assets/lang/en.png';
 
 export const SettingScreen: React.FC = () => {
+  const { t, i18n } = useTranslation();
   const dispatch = useDispatch();
   const userInfo = useSelector(getUserInfo);
   const { username, avatar, fullname } = userInfo;
   const navigation = useNavigation<any>();
+  const [showChangeLang, setShowChangeLang] = useState<boolean>(false);
 
   const onSignOut = useCallback(() => {
     Alert.alert('Logout', '', [
@@ -114,13 +119,18 @@ export const SettingScreen: React.FC = () => {
       </View>
 
       <View style={styles.vListOption}>
-        <TouchableOpacity activeOpacity={0.7} style={styles.toRowOption}>
+        <TouchableOpacity
+          activeOpacity={0.7}
+          style={styles.toRowOption}
+          onPress={() => setShowChangeLang(true)}>
           <View style={styles.vRowOption}>
             <View style={styles.vRowOptionLeft}>
               <Icon name="globe-americas" size={18} color="#4389ED" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>Language</Text>
-                <Text style={styles.tOptionSubName}>English</Text>
+                <Text style={styles.tOptionName}>{t('SETTING:LANGUAGE')}</Text>
+                <Text style={styles.tOptionSubName}>
+                  {t('SETTING:CURRENT_LANGUAGE')}
+                </Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -150,7 +160,7 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="power-off" size={18} color="#FF4B4B" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>Sign out</Text>
+                <Text style={styles.tOptionName}>{t('SETTING:SIGN_OUT')}</Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -161,6 +171,38 @@ export const SettingScreen: React.FC = () => {
       <View style={styles.vVersion}>
         <Text style={styles.tVersion}>Version: {packageJson.version}</Text>
       </View>
+
+      <Modal isVisible={showChangeLang}>
+        <View>
+          <View style={{ backgroundColor: '#fff' }}>
+            <View>
+              <Icon name="times" onPress={() => setShowChangeLang(false)} />
+            </View>
+            <View>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => {
+                  // dispatch(changeLanguage({ lang: 'vi' }));
+                  i18n.changeLanguage('vi');
+                  setShowChangeLang(false);
+                }}>
+                <Image source={ImageFlagVI} />
+                <Text>Tiếng Việt</Text>
+              </TouchableOpacity>
+              <TouchableOpacity
+                activeOpacity={0.8}
+                onPress={() => {
+                  // dispatch(changeLanguage({ lang: 'en' }));
+                  i18n.changeLanguage('en');
+                  setShowChangeLang(false);
+                }}>
+                <Image source={ImageFlagEN} />
+                <Text>English</Text>
+              </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
     </View>
   );
 };

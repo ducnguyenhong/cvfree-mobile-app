@@ -7,6 +7,7 @@ import Toast from 'react-native-toast-message';
 import SplashScreen from 'react-native-splash-screen';
 import { FontQsRegular } from './src/constants/fonts';
 import GlobalFont from './src/utils/global-font';
+import './src/language';
 
 export default function App() {
   useEffect(() => {
