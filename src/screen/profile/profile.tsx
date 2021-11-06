@@ -9,10 +9,12 @@ import Icon from 'react-native-vector-icons/FontAwesome5';
 import dayjs from 'dayjs';
 import { styles } from './profile.styles';
 import { useNavigation } from '@react-navigation/native';
+import { useTranslation } from 'react-i18next';
 
 export const ProfileScreen: React.FC = () => {
   const userInfo = useSelector(getUserInfo);
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
 
   const { fullname, birthday, phone, address, email, gender, username } =
     userInfo;
@@ -33,20 +35,20 @@ export const ProfileScreen: React.FC = () => {
             activeOpacity={0.8}
             onPress={() => navigation.navigate('UpdateProfileScreen')}>
             <Icon name="edit" style={styles.icEdit} />
-            <Text style={styles.tEdit}>Edit profile</Text>
+            <Text style={styles.tEdit}>{t('PROFILE:EDIT_PROFILE')}</Text>
           </TouchableOpacity>
         </View>
 
         <View style={styles.vBottomInfo}>
           <View style={styles.vGroupInfo}>
             <View style={styles.vSection}>
-              <Text style={styles.tSection}>Content</Text>
+              <Text style={styles.tSection}>{t('PROFILE:CONTENT')}</Text>
             </View>
             <View style={styles.vContentInfo}>
               <View style={styles.vItemInfo}>
                 <View style={styles.vItemInfoLeft}>
                   <Icon name="birthday-cake" style={styles.icItemInfo} />
-                  <Text style={styles.tLabelInfo}>Birthday</Text>
+                  <Text style={styles.tLabelInfo}>{t('PROFILE:BIRTHDAY')}</Text>
                 </View>
                 <Text style={styles.tValueInfo}>
                   {dayjs(birthday).format('DD/MM/YYYY')}
@@ -57,7 +59,7 @@ export const ProfileScreen: React.FC = () => {
               <View style={styles.vItemInfo}>
                 <View style={styles.vItemInfoLeft}>
                   <Icon name="transgender" style={styles.icItemInfo} />
-                  <Text style={styles.tLabelInfo}>Gennder</Text>
+                  <Text style={styles.tLabelInfo}>{t('PROFILE:GENDER')}</Text>
                 </View>
                 <Text style={styles.tValueInfo}>{gender}</Text>
               </View>
@@ -66,13 +68,13 @@ export const ProfileScreen: React.FC = () => {
 
           <View style={styles.vGroupInfo}>
             <View style={styles.vSection}>
-              <Text style={styles.tSection}>Contact</Text>
+              <Text style={styles.tSection}>{t('PROFILE:CONTACT')}</Text>
             </View>
             <View style={styles.vContentInfo}>
               <View style={styles.vItemInfo}>
                 <View style={styles.vItemInfoLeft}>
                   <Icon name="phone" style={styles.icItemInfo} />
-                  <Text style={styles.tLabelInfo}>Phone</Text>
+                  <Text style={styles.tLabelInfo}>{t('PROFILE:PHONE')}</Text>
                 </View>
                 <Text style={styles.tValueInfo}>{phone}</Text>
               </View>
@@ -90,7 +92,7 @@ export const ProfileScreen: React.FC = () => {
               <View style={styles.vItemInfo}>
                 <View style={styles.vItemInfoLeft}>
                   <Icon name="map-marker-alt" style={styles.icItemInfo} />
-                  <Text style={styles.tLabelInfo}>Address</Text>
+                  <Text style={styles.tLabelInfo}>{t('PROFILE:ADDRESS')}</Text>
                 </View>
                 <Text style={styles.tValueInfo}>{address?.label}</Text>
               </View>

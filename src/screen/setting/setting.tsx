@@ -1,5 +1,5 @@
-import React, { useCallback, useState } from 'react';
-import { Alert, Image, Text, TouchableOpacity, View } from 'react-native';
+import React, { useState } from 'react';
+import { Image, Text, TouchableOpacity, View } from 'react-native';
 import { useDispatch, useSelector } from 'react-redux';
 import { logoutAction } from '../../redux/auth/auth-action';
 import { styles } from './setting.styles';
@@ -20,22 +20,7 @@ export const SettingScreen: React.FC = () => {
   const { username, avatar, fullname } = userInfo;
   const navigation = useNavigation<any>();
   const [showChangeLang, setShowChangeLang] = useState<boolean>(false);
-
-  const onSignOut = useCallback(() => {
-    Alert.alert('Logout', '', [
-      {
-        text: 'Cancel',
-        onPress: () => console.log('Cancel Pressed'),
-        style: 'cancel',
-      },
-      {
-        text: 'OK',
-        onPress: () => {
-          dispatch(logoutAction());
-        },
-      },
-    ]);
-  }, [dispatch]);
+  const [showLogout, setShowLogout] = useState<boolean>(false);
 
   return (
     <View style={styles.container}>
@@ -60,7 +45,7 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="paste" size={18} color="#F2C13E" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>CV list</Text>
+                <Text style={styles.tOptionName}>{t('SETTING:CV_LIST')}</Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -72,7 +57,9 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="briefcase" size={18} color="#C917CE" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>List of jobs applied for</Text>
+                <Text style={styles.tOptionName}>
+                  {t('SETTING:LIST_JOB_APPLIED')}
+                </Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -86,7 +73,9 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="atlas" size={18} color="#4DD6B7" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>Term of use</Text>
+                <Text style={styles.tOptionName}>
+                  {t('SETTING:TERM_OF_USE')}
+                </Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -98,7 +87,9 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="shield-alt" size={18} color="#81E30F" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>Privacy policy</Text>
+                <Text style={styles.tOptionName}>
+                  {t('SETTING:PRIVACY_POLICY')}
+                </Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -110,7 +101,7 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="info-circle" size={18} color="#6493D8" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>About us</Text>
+                <Text style={styles.tOptionName}>{t('SETTING:ABOUT_US')}</Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -145,7 +136,9 @@ export const SettingScreen: React.FC = () => {
             <View style={styles.vRowOptionLeft}>
               <Icon name="lock" size={18} color="#4DAD6C" />
               <View style={styles.vTextOption}>
-                <Text style={styles.tOptionName}>Change password</Text>
+                <Text style={styles.tOptionName}>
+                  {t('SETTING:CHANGE_PASS')}
+                </Text>
               </View>
             </View>
             <Icon name="chevron-right" size={15} color="#DBDBDB" />
@@ -155,7 +148,7 @@ export const SettingScreen: React.FC = () => {
         <TouchableOpacity
           activeOpacity={0.7}
           style={styles.toRowOption}
-          onPress={onSignOut}>
+          onPress={() => setShowLogout(true)}>
           <View style={styles.vRowOption}>
             <View style={styles.vRowOptionLeft}>
               <Icon name="power-off" size={18} color="#FF4B4B" />
@@ -174,7 +167,7 @@ export const SettingScreen: React.FC = () => {
 
       <Modal isVisible={showChangeLang}>
         <View>
-          <View style={styles.vChangeLang}>
+          <View style={styles.vmdChangeLang}>
             <View style={styles.vCLIconClose}>
               <Icon
                 name="times"
@@ -211,6 +204,37 @@ export const SettingScreen: React.FC = () => {
                 />
                 <Text style={styles.tCLLangEN}>English</Text>
               </TouchableOpacity>
+            </View>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal isVisible={showLogout}>
+        <View>
+          <View style={styles.vmdLogout}>
+            <View style={styles.vLOIconClose}>
+              <Icon
+                name="times"
+                onPress={() => setShowLogout(false)}
+                style={styles.icLOClose}
+              />
+            </View>
+            <View style={styles.vLOContent}>
+              <Text style={styles.tLOConfirm}>Xác nhận đăng xuất ?</Text>
+              <View style={styles.vLOControl}>
+                <TouchableOpacity
+                  style={styles.toLOOk}
+                  activeOpacity={0.8}
+                  onPress={() => dispatch(logoutAction())}>
+                  <Text style={styles.tLOOk}>Ok</Text>
+                </TouchableOpacity>
+                <TouchableOpacity
+                  style={styles.toLOCancel}
+                  activeOpacity={0.8}
+                  onPress={() => setShowLogout(false)}>
+                  <Text style={styles.tLOCancel}>Cancel</Text>
+                </TouchableOpacity>
+              </View>
             </View>
           </View>
         </View>

@@ -102,7 +102,7 @@ export const styles = StyleSheet.create({
 
   // modal change language
 
-  vChangeLang: {
+  vmdChangeLang: {
     backgroundColor: '#fff',
     borderRadius: 5,
   },
@@ -150,4 +150,73 @@ export const styles = StyleSheet.create({
   tCLLangEN: {
     fontFamily: fonts.FontQsSemiBold,
   },
+
+  // end change language
+
+  // modal logout
+
+  vmdLogout: {
+    backgroundColor: '#fff',
+    borderRadius: 5,
+  },
+
+  vLOIconClose: {
+    alignItems: 'flex-end',
+  },
+
+  icLOClose: {
+    fontSize: 20,
+    padding: 15,
+  },
+
+  vLOContent: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    paddingTop: 10,
+    paddingBottom: 40,
+  },
+
+  tLOConfirm: {
+    fontFamily: fonts.FontQsBold,
+    fontSize: 17,
+  },
+
+  vLOControl: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    marginTop: 30,
+  },
+
+  toLOOk: {
+    paddingVertical: 10,
+    backgroundColor: '#E80F0F',
+    width: 100,
+    alignItems: 'center',
+    marginRight: 30,
+    borderRadius: 5,
+  },
+
+  tLOOk: {
+    color: '#fff',
+    textTransform: 'uppercase',
+    fontFamily: fonts.FontQsSemiBold,
+  },
+
+  toLOCancel: {
+    paddingVertical: 10,
+    width: 100,
+    alignItems: 'center',
+    borderRadius: 5,
+    borderColor: '#D6D6D6',
+    borderWidth: 1,
+    backgroundColor: '#F7F7F7',
+  },
+
+  tLOCancel: {
+    textTransform: 'uppercase',
+    fontFamily: fonts.FontQsSemiBold,
+  },
+
+  // end logout
 });

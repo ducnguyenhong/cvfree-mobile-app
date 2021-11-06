@@ -9,10 +9,13 @@ import { HeaderStack } from '../components/header-stack';
 import { UpdateProfileScreen } from '../screen/profile-update';
 import { JobDetail } from '../screen/job-detail';
 import { CvDetail } from '../screen/cv-detail';
+import { useTranslation } from 'react-i18next';
 
 const Stack = createStackNavigator<RootStackParamList>();
 
 export const AppRoute = () => {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator
       screenOptions={{ headerShown: false }}
@@ -23,7 +26,11 @@ export const AppRoute = () => {
         component={ChangePassword}
         options={{
           header: props => (
-            <HeaderStack {...props} backButton title="Change password" />
+            <HeaderStack
+              {...props}
+              backButton
+              title={t('COMMON:CHANGE_PASS')}
+            />
           ),
           headerShown: true,
         }}
@@ -34,7 +41,11 @@ export const AppRoute = () => {
         component={ProfileScreen}
         options={{
           header: props => (
-            <HeaderStack {...props} backButton title="Information" />
+            <HeaderStack
+              {...props}
+              backButton
+              title={t('COMMON:INFORMATION')}
+            />
           ),
           headerShown: true,
         }}
@@ -44,7 +55,11 @@ export const AppRoute = () => {
         component={UpdateProfileScreen}
         options={{
           header: props => (
-            <HeaderStack {...props} backButton title="Update infomation" />
+            <HeaderStack
+              {...props}
+              backButton
+              title={t('COMMON:UPDATE_INFO')}
+            />
           ),
           headerShown: true,
         }}
@@ -54,7 +69,7 @@ export const AppRoute = () => {
         component={JobDetail}
         options={{
           header: props => (
-            <HeaderStack {...props} backButton title="Job detail" />
+            <HeaderStack {...props} backButton title={t('COMMON:JOB_DETAIL')} />
           ),
           headerShown: true,
         }}
@@ -64,7 +79,7 @@ export const AppRoute = () => {
         component={CvDetail}
         options={{
           header: props => (
-            <HeaderStack {...props} backButton title="Cv detail" />
+            <HeaderStack {...props} backButton title={t('COMMON:CV_DETAIL')} />
           ),
           headerShown: true,
         }}
