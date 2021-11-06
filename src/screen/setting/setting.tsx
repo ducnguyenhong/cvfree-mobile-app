@@ -174,30 +174,42 @@ export const SettingScreen: React.FC = () => {
 
       <Modal isVisible={showChangeLang}>
         <View>
-          <View style={{ backgroundColor: '#fff' }}>
-            <View>
-              <Icon name="times" onPress={() => setShowChangeLang(false)} />
+          <View style={styles.vChangeLang}>
+            <View style={styles.vCLIconClose}>
+              <Icon
+                name="times"
+                onPress={() => setShowChangeLang(false)}
+                style={styles.icCLClose}
+              />
             </View>
-            <View>
+            <View style={styles.vCLContent}>
               <TouchableOpacity
+                style={styles.toCLLangVN}
                 activeOpacity={0.8}
                 onPress={() => {
-                  // dispatch(changeLanguage({ lang: 'vi' }));
                   i18n.changeLanguage('vi');
                   setShowChangeLang(false);
                 }}>
-                <Image source={ImageFlagVI} />
-                <Text>Tiếng Việt</Text>
+                <Image
+                  source={ImageFlagVI}
+                  style={styles.imgCLFlagVN}
+                  resizeMode="contain"
+                />
+                <Text style={styles.tCLLangVN}>Tiếng Việt</Text>
               </TouchableOpacity>
               <TouchableOpacity
+                style={styles.toCLLangEN}
                 activeOpacity={0.8}
                 onPress={() => {
-                  // dispatch(changeLanguage({ lang: 'en' }));
                   i18n.changeLanguage('en');
                   setShowChangeLang(false);
                 }}>
-                <Image source={ImageFlagEN} />
-                <Text>English</Text>
+                <Image
+                  source={ImageFlagEN}
+                  style={styles.imgCLFlagEN}
+                  resizeMode="contain"
+                />
+                <Text style={styles.tCLLangEN}>English</Text>
               </TouchableOpacity>
             </View>
           </View>

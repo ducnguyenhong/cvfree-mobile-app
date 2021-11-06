@@ -30,15 +30,16 @@ import { useSelector } from 'react-redux';
 import { getUserInfo, getUserToken } from '../../redux/selector/auth-selector';
 import ImgHeaderBackground from '../../assets/common/img_header_background.png';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { useTranslation } from 'react-i18next';
 
 const HeaderHome: React.FC = memo(() => {
   const navigation = useNavigation<any>();
   const userInfo = useSelector(getUserInfo);
+  const { t } = useTranslation();
 
   return (
     <Fragment>
       <StatusBar backgroundColor="transparent" translucent />
-      {/* Header toolbar */}
       <ImageBackground
         source={ImgHeaderBackground}
         style={styles.imgHeaderBackground}
@@ -49,7 +50,7 @@ const HeaderHome: React.FC = memo(() => {
             onTouchStart={() => navigation.navigate('ProfileScreen')}>
             <Image source={DefaultAvatar} style={styles.imgToolbarAvatar} />
             <View style={styles.vToolbarInfo}>
-              <Text style={styles.tToolbarHello}>Hello</Text>
+              <Text style={styles.tToolbarHello}>{t('HOME:HELLO')}</Text>
               <Text style={styles.tToolbarFullname}>{userInfo.fullname}</Text>
             </View>
           </View>
@@ -75,6 +76,7 @@ const HeaderHome: React.FC = memo(() => {
 export const HomeScreen: React.FC = () => {
   const [data, setData] = useState<DashboardInfo | undefined | null>(undefined);
   const navigation = useNavigation<any>();
+  const { t } = useTranslation();
   const token = useSelector(getUserToken);
 
   const callApiDashboard = useCallback(() => {
@@ -105,7 +107,7 @@ export const HomeScreen: React.FC = () => {
         <View style={styles.vLoading}>
           <View>
             <View style={styles.vLabel}>
-              <Text style={styles.tLabel}>Statistics</Text>
+              <Text style={styles.tLabel}>{t('HOME:STATISTICS')}</Text>
             </View>
             <View style={styles.vLdStatis}>
               <View style={styles.vLdItemStatis}>
@@ -128,7 +130,7 @@ export const HomeScreen: React.FC = () => {
 
           <View style={styles.vLdJobs}>
             <View style={styles.vLabel}>
-              <Text style={styles.tLabel}>Jobs</Text>
+              <Text style={styles.tLabel}>{t('HOME:JOBS')}</Text>
             </View>
             <View>
               <FlatList
@@ -158,7 +160,7 @@ export const HomeScreen: React.FC = () => {
 
           <View style={styles.vLdJobs}>
             <View style={styles.vLabel}>
-              <Text style={styles.tLabel}>Cvs</Text>
+              <Text style={styles.tLabel}>{t('HOME:CVS')}</Text>
             </View>
             <View>
               <FlatList
@@ -185,7 +187,7 @@ export const HomeScreen: React.FC = () => {
 
           <View style={styles.vLdJobs}>
             <View style={styles.vLabel}>
-              <Text style={styles.tLabel}>Companies</Text>
+              <Text style={styles.tLabel}>{t('HOME:COMPANIES')}</Text>
             </View>
             <View>
               <FlatList
@@ -238,28 +240,30 @@ export const HomeScreen: React.FC = () => {
               {/* Thống kê */}
               <View>
                 <View style={styles.vLabel}>
-                  <Text style={styles.tLabel}>Statistics</Text>
+                  <Text style={styles.tLabel}>{t('HOME:STATISTICS')}</Text>
                 </View>
                 <View style={styles.vStatisData}>
                   <View style={styles.vStatisCvItem}>
                     <Icon name="paste" style={styles.icStatisItemCv} />
                     <View style={styles.vStatisItemContent}>
                       <Text style={styles.tStatisValue}>{statis.cv}</Text>
-                      <Text style={styles.tStatisLabel}>Cvs</Text>
+                      <Text style={styles.tStatisLabel}>{t('HOME:CVS')}</Text>
                     </View>
                   </View>
                   <View style={styles.vStatisJobItem}>
                     <Icon name="briefcase" style={styles.icStatisItemJob} />
                     <View style={styles.vStatisItemContent}>
                       <Text style={styles.tStatisValue}>{statis.job}</Text>
-                      <Text style={styles.tStatisLabel}>Jobs</Text>
+                      <Text style={styles.tStatisLabel}>{t('HOME:JOBS')}</Text>
                     </View>
                   </View>
                   <View style={styles.vStatisCompanyItem}>
                     <Icon name="building" style={styles.icStatisItemCompany} />
                     <View style={styles.vStatisItemContent}>
                       <Text style={styles.tStatisValue}>{statis.company}</Text>
-                      <Text style={styles.tStatisLabel}>Companies</Text>
+                      <Text style={styles.tStatisLabel}>
+                        {t('HOME:COMPANIES')}
+                      </Text>
                     </View>
                   </View>
                 </View>
@@ -268,11 +272,11 @@ export const HomeScreen: React.FC = () => {
               {/* Việc làm mới*/}
               <View style={styles.vJobs}>
                 <View style={styles.vLabel}>
-                  <Text style={styles.tLabel}>Jobs</Text>
+                  <Text style={styles.tLabel}>{t('HOME:JOBS')}</Text>
                   <Text
                     style={styles.tSeeAll}
                     onPress={() => navigation.navigate('Job')}>
-                    See all
+                    {t('HOME:SEE_ALL')}
                   </Text>
                 </View>
                 <View>
@@ -366,11 +370,11 @@ export const HomeScreen: React.FC = () => {
               {/* Hồ sơ mới*/}
               <View>
                 <View style={styles.vLabel}>
-                  <Text style={styles.tLabel}>Cvs</Text>
+                  <Text style={styles.tLabel}>{t('HOME:CVS')}</Text>
                   <Text
                     style={styles.tSeeAll}
                     onPress={() => navigation.navigate('Cv')}>
-                    See all
+                    {t('HOME:SEE_ALL')}
                   </Text>
                 </View>
                 <View>
@@ -457,11 +461,11 @@ export const HomeScreen: React.FC = () => {
               {/* Công ty mới*/}
               <View style={styles.vCompanies}>
                 <View style={styles.vLabel}>
-                  <Text style={styles.tLabel}>Companies</Text>
+                  <Text style={styles.tLabel}>{t('HOME:COMPANIES')}</Text>
                   <Text
                     style={styles.tSeeAll}
                     onPress={() => navigation.navigate('Cv')}>
-                    See all
+                    {t('HOME:SEE_ALL')}
                   </Text>
                 </View>
                 <View>
