@@ -12,12 +12,14 @@ import { useNavigation } from '@react-navigation/native';
 import { useSelector } from 'react-redux';
 import { getDeviceId } from '../../redux/selector/auth-selector';
 import uuid from 'react-native-uuid';
+import { useTranslation } from 'react-i18next';
 
 export const SignIn: React.FC = () => {
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const dispatch = useAppDispatch();
   const navigation = useNavigation<any>();
   const deviceId = useSelector(getDeviceId);
+  const { t } = useTranslation();
 
   return (
     <View style={styles.container}>
@@ -25,7 +27,7 @@ export const SignIn: React.FC = () => {
         <Image source={Logo} style={styles.imgLogo} resizeMode="contain" />
       </View>
 
-      <Text style={styles.tHello}>Welcome to CVFREE</Text>
+      <Text style={styles.tHello}>{t('SIGN_IN:HELLO_LABEL')}</Text>
 
       <View>
         <Formik
@@ -62,7 +64,7 @@ export const SignIn: React.FC = () => {
                 onChangeText={handleChange('username')}
                 onBlur={handleBlur('username')}
                 value={values.username}
-                placeholder="Username"
+                placeholder={t('SIGN_IN:USERNAME')}
                 autoCapitalize="none"
                 style={styles.ipUsername}
                 returnKeyType="next"
@@ -74,7 +76,7 @@ export const SignIn: React.FC = () => {
                 <TextInput
                   onChangeText={handleChange('password')}
                   onBlur={handleBlur('password')}
-                  placeholder="Password"
+                  placeholder={t('SIGN_IN:PASSWORD')}
                   secureTextEntry={!showPassword}
                   value={values.password}
                   style={styles.ipPassword}
@@ -90,20 +92,28 @@ export const SignIn: React.FC = () => {
                   onPress={() => setShowPassword(!showPassword)}
                 />
               </View>
-              <TouchableOpacity onPress={handleSubmit} disabled={isSubmitting}>
+              <TouchableOpacity
+                onPress={() => handleSubmit()}
+                disabled={isSubmitting}>
                 {isSubmitting ? (
-                  <Text style={styles.tSignInLoading}>Waiting...</Text>
+                  <Text style={styles.tSignInLoading}>
+                    {t('SIGN_IN:WAITING')}...
+                  </Text>
                 ) : (
-                  <Text style={styles.tSignIn}>Sign In</Text>
+                  <Text style={styles.tSignIn}>{t('SIGN_IN:SIGN_IN')}</Text>
                 )}
               </TouchableOpacity>
-              <Text style={styles.tForgotPass}>Forgot password?</Text>
+              <Text style={styles.tForgotPass}>
+                {t('SIGN_IN:FORGOT_PASS')}?
+              </Text>
               <View style={styles.vRegister}>
-                <Text style={styles.tDontAcc}>Don't have an account!</Text>
+                <Text style={styles.tDontAcc}>
+                  {t('SIGN_IN:DONT_HAVE_ACC')}!
+                </Text>
                 <Text
                   style={styles.tRegister}
                   onPress={() => navigation.navigate('SignUp')}>
-                  Register
+                  {t('SIGN_IN:REGISTER')}
                 </Text>
               </View>
             </View>
